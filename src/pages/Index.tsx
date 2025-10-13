@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Sparkles, Palette, Code, Megaphone, Menu, ArrowDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { AnimatedSection } from "@/components/AnimatedSection";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
@@ -9,6 +11,11 @@ import project4 from "@/assets/project-4.jpg";
 
 const Index = () => {
   const [currentProject, setCurrentProject] = useState(0);
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
+  
   const tickerProjects = [
     "Website experience INFOCASTER",
     "Vormgeven Gin etiketten RBL-ANN",
@@ -89,7 +96,11 @@ const Index = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <motion.section 
+        ref={heroRef}
+        style={{ opacity, scale }}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      >
         {/* Radial gradient background */}
         <div className="absolute inset-0">
           <div 
@@ -126,18 +137,28 @@ const Index = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
-            <div className="mb-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-12"
+            >
               <span className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
                 Creative agency
               </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic">
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic"
+            >
               WE DESIGN UNIQUE
               <br />
               GRAPHIC AND WEB
               <br />
               EXPERIENCES
-            </h1>
+            </motion.h1>
             <div className="flex flex-col sm:flex-row gap-0 justify-center items-center max-w-md mx-auto">
               <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0">
                 Cases
@@ -150,22 +171,27 @@ const Index = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-12 right-12 flex flex-col items-center gap-3 cursor-pointer group">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="absolute bottom-12 right-12 flex flex-col items-center gap-3 cursor-pointer group"
+        >
           <div className="relative">
-            <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent group-hover:text-background transition-all duration-300">
+            <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent group-hover:text-background transition-all duration-300 animate-[rotate_20s_linear_infinite]">
               <ArrowRight className="w-6 h-6 rotate-[-45deg]" />
             </div>
           </div>
           <span className="text-xs font-medium tracking-wider text-accent">
             Scroll down
           </span>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Video Section */}
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
+          <AnimatedSection className="max-w-5xl mx-auto">
             <div className="aspect-video bg-muted relative overflow-hidden border border-border">
               <iframe 
                 src="https://player.vimeo.com/video/1101440320?title=0&byline=0&portrait=0"
@@ -175,7 +201,7 @@ const Index = () => {
                 allowFullScreen
               ></iframe>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -183,25 +209,36 @@ const Index = () => {
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold mb-12 italic text-center">
-              YOU'VE GOT GREAT TASTE
-            </h2>
+            <AnimatedSection>
+              <h2 className="text-5xl md:text-6xl font-bold mb-12 italic text-center">
+                YOU'VE GOT GREAT TASTE
+              </h2>
+            </AnimatedSection>
             <p className="text-xl text-muted-foreground mb-16 leading-relaxed text-center">
               Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
             </p>
             
-            <div className="text-center">
-              <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
-                Skills
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-12">
-                {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
-                  <div key={index} className="text-center">
-                    <p className="text-lg font-medium">{skill}</p>
-                  </div>
-                ))}
+            <AnimatedSection delay={0.2}>
+              <div className="text-center">
+                <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
+                  Skills
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-12">
+                  {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="text-center"
+                    >
+                      <p className="text-lg font-medium">{skill}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -235,25 +272,32 @@ const Index = () => {
       {/* Services Section */}
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
+          <AnimatedSection className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 italic">
               What We Do
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Full-spectrum digital services tailored to elevate your brand
             </p>
-          </div>
+          </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card 
+              <motion.div
                 key={index}
-                className="group p-8 bg-card border-border hover:border-foreground transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <service.icon className="w-12 h-12 text-foreground mb-6 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </Card>
+                <Card 
+                  className="group p-8 bg-card border-border hover:border-foreground transition-all duration-300 cursor-pointer h-full"
+                >
+                  <service.icon className="w-12 h-12 text-foreground mb-6 group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
+                  <p className="text-muted-foreground">{service.description}</p>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -262,19 +306,23 @@ const Index = () => {
       {/* Portfolio Section */}
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
+          <AnimatedSection className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 italic">
               Featured Work
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               A selection of our most impactful projects
             </p>
-          </div>
+          </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {portfolioProjects.map((project, index) => (
-              <div 
+              <motion.div 
                 key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
                 className="group relative overflow-hidden cursor-pointer border border-border hover:border-foreground transition-all duration-300"
               >
                 <div className="aspect-[4/3] overflow-hidden">
@@ -295,7 +343,7 @@ const Index = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
