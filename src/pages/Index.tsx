@@ -232,62 +232,76 @@ const Index = () => {
             </h1>
             <div className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full">
               <motion.div 
-                whileHover={{ scale: 1.03, y: -3 }} 
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  transition: { 
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1]
+                  }
+                }} 
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 className="w-full"
               >
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full rounded-none border-t border-l border-r border-b-0 relative overflow-hidden group"
+                  className="w-full rounded-none border-t border-l border-r border-b-0 relative overflow-hidden group transition-all duration-500"
                   style={{
                     boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
-                    transition: "box-shadow 0.3s ease",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 30px rgba(74, 222, 128, 0.5)";
+                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.6)";
+                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
+                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
                   }}
                 >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Cases</span>
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-background font-medium">Cases</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%", skewX: -20 }}
+                    initial={{ x: "-100%", skewX: -15 }}
                     whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Button>
               </motion.div>
               <motion.div 
-                whileHover={{ scale: 1.03, y: -3 }} 
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  transition: { 
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1]
+                  }
+                }} 
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 className="w-full"
               >
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full rounded-none border-l border-r border-b relative overflow-hidden group"
+                  className="w-full rounded-none border-l border-r border-b relative overflow-hidden group transition-all duration-500"
                   style={{
                     boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
-                    transition: "box-shadow 0.3s ease",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 30px rgba(74, 222, 128, 0.5)";
+                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.6)";
+                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
+                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
                   }}
                 >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Contact</span>
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-background font-medium">Contact</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%", skewX: -20 }}
+                    initial={{ x: "-100%", skewX: -15 }}
                     whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Button>
               </motion.div>
@@ -399,60 +413,91 @@ const Index = () => {
 
       {/* You've Got Great Taste Section */}
       <section className="py-32 relative border-t border-border">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-20 items-start">
+        <div className="container mx-auto px-8 md:px-12 lg:px-16">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-24 items-start">
               {/* Left side: Title and Description */}
-              <AnimatedSection>
-                <motion.h2 
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-6xl md:text-7xl font-bold mb-10 italic text-left leading-[1.1]"
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-10 italic text-left leading-[0.95] tracking-tight">
                   YOU'VE GOT GREAT TASTE
-                </motion.h2>
+                </h2>
                 <motion.p 
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-lg text-muted-foreground leading-relaxed text-left"
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-lg md:text-xl text-muted-foreground leading-relaxed text-left"
                 >
                   Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
                 </motion.p>
-              </AnimatedSection>
+              </motion.div>
               
               {/* Right side: Skills */}
-              <AnimatedSection delay={0.2}>
-                <div className="text-right">
-                  <motion.h3 
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border pb-4 inline-block"
-                  >
-                    Skills
-                  </motion.h3>
-                  <div className="flex flex-col gap-6 items-end">
-                    {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
-                      <motion.div 
-                        key={index}
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                        whileHover={{ x: -10, scale: 1.05 }}
-                        className="cursor-pointer"
-                      >
-                        <p className="text-2xl md:text-3xl font-medium">{skill}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </AnimatedSection>
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="text-right"
+              >
+                <motion.h3 
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="text-xs font-medium tracking-[0.3em] uppercase mb-10 border-b border-border pb-4 inline-block"
+                >
+                  Skills
+                </motion.h3>
+                <motion.div 
+                  className="flex flex-col gap-7 items-end"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                  variants={{
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.12,
+                        delayChildren: 0.4
+                      }
+                    }
+                  }}
+                >
+                  {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
+                    <motion.div 
+                      key={index}
+                      variants={{
+                        hidden: { opacity: 0, x: 40, scale: 0.95 },
+                        visible: { 
+                          opacity: 1, 
+                          x: 0,
+                          scale: 1,
+                          transition: {
+                            duration: 0.6,
+                            ease: [0.22, 1, 0.36, 1]
+                          }
+                        }
+                      }}
+                      whileHover={{ 
+                        x: -12, 
+                        scale: 1.08,
+                        transition: { 
+                          duration: 0.3,
+                          ease: [0.22, 1, 0.36, 1]
+                        }
+                      }}
+                      className="cursor-pointer"
+                    >
+                      <p className="text-2xl md:text-3xl lg:text-4xl font-medium">{skill}</p>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
