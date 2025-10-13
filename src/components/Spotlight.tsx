@@ -21,9 +21,18 @@ export const Spotlight = () => {
 
   return (
     <motion.div
-      className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
-      style={{
-        background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 51, 234, 0.15), transparent 40%)`,
+      className="pointer-events-none fixed inset-0 z-[5] opacity-70"
+      animate={{
+        background: [
+          `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(74, 222, 128, 0.08), transparent 50%)`,
+          `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(74, 222, 128, 0.12), transparent 60%)`,
+          `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(74, 222, 128, 0.08), transparent 50%)`,
+        ],
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
       }}
     />
   );

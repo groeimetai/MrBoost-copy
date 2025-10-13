@@ -209,25 +209,33 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 1.1 }}
               className="flex flex-col sm:flex-row gap-0 justify-center items-center max-w-md mx-auto"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div 
+                whileHover={{ scale: 1.08, y: -5 }} 
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
                 <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0 relative overflow-hidden group">
-                  <span className="relative z-10">Cases</span>
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Cases</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ x: "-100%", skewX: -20 }}
+                    whileHover={{ x: 0, skewX: 0 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div 
+                whileHover={{ scale: 1.08, y: -5 }} 
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
                 <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-l border-r border-b relative overflow-hidden group">
-                  <span className="relative z-10">Contact</span>
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Contact</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ x: "-100%", skewX: -20 }}
+                    whileHover={{ x: 0, skewX: 0 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Button>
               </motion.div>
@@ -237,31 +245,42 @@ const Index = () => {
 
         {/* Scroll Indicator */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 1.3, type: "spring" }}
           className="absolute bottom-12 right-12 flex flex-col items-center gap-3 cursor-pointer group"
         >
           <motion.div 
             className="relative"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.85 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div 
-              className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-colors duration-300"
+              className="w-20 h-20 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent/20 backdrop-blur-sm transition-all duration-300 relative"
               animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              style={{
+                boxShadow: "0 0 20px rgba(74, 222, 128, 0.3)",
+              }}
             >
-              <ArrowRight className="w-6 h-6 -rotate-45 group-hover:text-background transition-colors duration-300" />
+              {/* Rotating text */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+                <defs>
+                  <path
+                    id="circlePath"
+                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                  />
+                </defs>
+                <text className="text-[8px] fill-accent font-medium tracking-widest uppercase">
+                  <textPath href="#circlePath" startOffset="0%">
+                    Scroll down • Scroll down • 
+                  </textPath>
+                </text>
+              </svg>
+              <ArrowRight className="w-6 h-6 -rotate-45 text-accent group-hover:text-accent transition-all duration-300 relative z-10" />
             </motion.div>
           </motion.div>
-          <motion.span 
-            className="text-xs font-medium tracking-wider text-accent"
-            animate={{ opacity: [1, 0.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            Scroll down
-          </motion.span>
         </motion.div>
       </motion.section>
 
@@ -462,14 +481,18 @@ const Index = () => {
               </p>
             </AnimatedSection>
             <AnimatedSection delay={0.4}>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div 
+                whileHover={{ scale: 1.08, y: -5 }} 
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
                 <Button variant="outline" size="lg" className="relative overflow-hidden group">
-                  <span className="relative z-10">Learn More About Us</span>
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Learn More About Us</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ x: "-100%", skewX: -20 }}
+                    whileHover={{ x: 0, skewX: 0 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Button>
               </motion.div>
@@ -487,31 +510,37 @@ const Index = () => {
                 <h2 className="text-5xl md:text-6xl font-bold mb-8 italic leading-tight">
                   READY FOR A BOOST?
                 </h2>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div 
+                  whileHover={{ scale: 1.08, y: -5 }} 
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
                   <Button variant="outline" size="lg" className="group relative overflow-hidden">
-                    <span className="relative z-10 flex items-center">
+                    <span className="relative z-10 flex items-center transition-colors duration-300 group-hover:text-background">
                       Get In Touch
-                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform duration-300" />
                     </span>
                     <motion.div 
                       className="absolute inset-0 bg-accent"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: 0 }}
-                      transition={{ duration: 0.3 }}
+                      initial={{ x: "-100%", skewX: -20 }}
+                      whileHover={{ x: 0, skewX: 0 }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     />
                   </Button>
                 </motion.div>
               </AnimatedSection>
               <AnimatedSection delay={0.2}>
                 <motion.div 
-                  className="aspect-[4/3] bg-muted rounded-none overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
+                  className="aspect-[4/3] bg-muted rounded-none overflow-hidden border border-border cursor-pointer"
+                  whileHover={{ scale: 1.03, borderColor: "rgb(74, 222, 128)" }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <img 
+                  <motion.img 
                     src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" 
                     alt="Team collaboration"
                     className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </motion.div>
               </AnimatedSection>
@@ -535,21 +564,36 @@ const Index = () => {
             </div>
             
             <div className="flex gap-6">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <motion.a 
+                href="#" 
+                className="text-muted-foreground hover:text-accent transition-colors"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22 7.5c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-9zm-4-2c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v11c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-11zm-8-3c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v16c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-16z"/>
                 </svg>
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              </motion.a>
+              <motion.a 
+                href="#" 
+                className="text-muted-foreground hover:text-accent transition-colors"
+                whileHover={{ scale: 1.2, rotate: -5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              </motion.a>
+              <motion.a 
+                href="#" 
+                className="text-muted-foreground hover:text-accent transition-colors"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
-              </a>
+              </motion.a>
             </div>
           </div>
         </div>
