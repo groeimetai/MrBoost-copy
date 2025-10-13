@@ -83,18 +83,18 @@ const Index = () => {
       </div>
 
       {/* Fixed Navigation */}
-      <div className="fixed top-12 left-0 right-0 z-40 px-6 py-6 bg-background/80 backdrop-blur-sm">
-        <div className="flex justify-center items-center gap-4">
+      <div className="fixed top-12 left-0 right-0 z-40 px-6 py-6">
+        <div className="flex justify-center items-center gap-0">
           {/* Logo */}
-          <div className="border border-foreground w-10 h-10 flex items-center justify-center">
-            <span className="text-xl font-bold">B</span>
+          <div className="border border-creme w-12 h-12 flex items-center justify-center bg-transparent">
+            <span className="text-xl font-bold text-creme">B</span>
           </div>
           
           {/* Menu */}
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="border border-foreground w-10 h-10 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group"
+            className="border-t border-r border-b border-creme w-12 h-12 flex items-center justify-center hover:bg-creme hover:text-background transition-all duration-300 group"
           >
             <div className="flex flex-col gap-1">
               <motion.div 
@@ -323,7 +323,7 @@ const Index = () => {
               delay: 3,
             }
           }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer group"
+          className="absolute bottom-12 right-12 flex flex-col items-center gap-3 cursor-pointer group"
         >
           <motion.div 
             className="relative"
