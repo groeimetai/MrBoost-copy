@@ -4,6 +4,8 @@ import { ArrowRight, Sparkles, Palette, Code, Megaphone, Menu, ArrowDown } from 
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { CustomCursor } from "@/components/CustomCursor";
+import { Spotlight } from "@/components/Spotlight";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
@@ -62,7 +64,9 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background cursor-none">
+      <CustomCursor />
+      <Spotlight />
       {/* Top Ticker */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border overflow-hidden">
         <div className="flex items-center h-10">
@@ -85,13 +89,32 @@ const Index = () => {
           </div>
           
           {/* Menu */}
-          <button className="border border-foreground w-10 h-10 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300">
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="border border-foreground w-10 h-10 flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300 group"
+          >
             <div className="flex flex-col gap-1">
-              <div className="w-5 h-px bg-current"></div>
-              <div className="w-5 h-px bg-current"></div>
-              <div className="w-5 h-px bg-current"></div>
+              <motion.div 
+                className="w-5 h-px bg-current"
+                initial={{ width: 20 }}
+                whileHover={{ width: 24 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.div 
+                className="w-5 h-px bg-current"
+                initial={{ width: 20 }}
+                whileHover={{ width: 16 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.div 
+                className="w-5 h-px bg-current"
+                initial={{ width: 20 }}
+                whileHover={{ width: 24 }}
+                transition={{ duration: 0.2 }}
+              />
             </div>
-          </button>
+          </motion.button>
         </div>
       </div>
 
@@ -153,20 +176,62 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic"
             >
-              WE DESIGN UNIQUE
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="inline-block"
+              >
+                WE DESIGN UNIQUE
+              </motion.span>
               <br />
-              GRAPHIC AND WEB
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="inline-block"
+              >
+                GRAPHIC AND WEB
+              </motion.span>
               <br />
-              EXPERIENCES
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="inline-block"
+              >
+                EXPERIENCES
+              </motion.span>
             </motion.h1>
-            <div className="flex flex-col sm:flex-row gap-0 justify-center items-center max-w-md mx-auto">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0">
-                Cases
-              </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-l border-r border-b">
-                Contact
-              </Button>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="flex flex-col sm:flex-row gap-0 justify-center items-center max-w-md mx-auto"
+            >
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0 relative overflow-hidden group">
+                  <span className="relative z-10">Cases</span>
+                  <motion.div 
+                    className="absolute inset-0 bg-accent"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-l border-r border-b relative overflow-hidden group">
+                  <span className="relative z-10">Contact</span>
+                  <motion.div 
+                    className="absolute inset-0 bg-accent"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
 
@@ -174,17 +239,29 @@ const Index = () => {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
           className="absolute bottom-12 right-12 flex flex-col items-center gap-3 cursor-pointer group"
         >
-          <div className="relative">
-            <div className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent group-hover:text-background transition-all duration-300 animate-[rotate_20s_linear_infinite]">
-              <ArrowRight className="w-6 h-6 rotate-[-45deg]" />
-            </div>
-          </div>
-          <span className="text-xs font-medium tracking-wider text-accent">
+          <motion.div 
+            className="relative"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <motion.div 
+              className="w-16 h-16 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent transition-colors duration-300"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <ArrowRight className="w-6 h-6 -rotate-45 group-hover:text-background transition-colors duration-300" />
+            </motion.div>
+          </motion.div>
+          <motion.span 
+            className="text-xs font-medium tracking-wider text-accent"
+            animate={{ opacity: [1, 0.5, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
             Scroll down
-          </span>
+          </motion.span>
         </motion.div>
       </motion.section>
 
@@ -246,24 +323,40 @@ const Index = () => {
       {/* Awards Section */}
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-sm font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
               Awards
             </h2>
-          </div>
+          </AnimatedSection>
           <div className="max-w-4xl mx-auto text-center mb-20">
-            <h3 className="text-4xl md:text-5xl font-bold italic mb-16">
-              IT'S NOT JUST OUR MOMS WHO THINK WE'RE GREAT.
-            </h3>
+            <AnimatedSection>
+              <h3 className="text-4xl md:text-5xl font-bold italic mb-16">
+                IT'S NOT JUST OUR MOMS WHO THINK WE'RE GREAT.
+              </h3>
+            </AnimatedSection>
             <div className="flex justify-center items-center gap-16">
-              <div className="flex flex-col items-center">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="flex flex-col items-center"
+              >
                 <div className="text-6xl font-bold mb-4">W.</div>
                 <span className="text-sm text-muted-foreground">Awwwards</span>
-              </div>
-              <div className="flex flex-col items-center">
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                className="flex flex-col items-center"
+              >
                 <div className="text-6xl font-bold mb-4">CSSDA</div>
                 <span className="text-sm text-muted-foreground">CSSDA</span>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -353,20 +446,34 @@ const Index = () => {
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 italic">
-              We're Not Just Designers.
-              <span className="block mt-4">
-                We're Digital Storytellers.
-              </span>
-            </h2>
-            <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-              With a passion for innovation and an eye for detail, we transform brands through 
-              creative design, strategic thinking, and cutting-edge technology. Our mission is 
-              to create digital experiences that not only look stunning but deliver real results.
-            </p>
-            <Button variant="outline" size="lg">
-              Learn More About Us
-            </Button>
+            <AnimatedSection>
+              <h2 className="text-5xl md:text-6xl font-bold mb-8 italic">
+                We're Not Just Designers.
+                <span className="block mt-4">
+                  We're Digital Storytellers.
+                </span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
+                With a passion for innovation and an eye for detail, we transform brands through 
+                creative design, strategic thinking, and cutting-edge technology. Our mission is 
+                to create digital experiences that not only look stunning but deliver real results.
+              </p>
+            </AnimatedSection>
+            <AnimatedSection delay={0.4}>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="outline" size="lg" className="relative overflow-hidden group">
+                  <span className="relative z-10">Learn More About Us</span>
+                  <motion.div 
+                    className="absolute inset-0 bg-accent"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Button>
+              </motion.div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -376,22 +483,38 @@ const Index = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
+              <AnimatedSection>
                 <h2 className="text-5xl md:text-6xl font-bold mb-8 italic leading-tight">
                   READY FOR A BOOST?
                 </h2>
-                <Button variant="outline" size="lg" className="group">
-                  Get In Touch
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-              <div className="aspect-[4/3] bg-muted rounded-none overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" 
-                  alt="Team collaboration"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button variant="outline" size="lg" className="group relative overflow-hidden">
+                    <span className="relative z-10 flex items-center">
+                      Get In Touch
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                    <motion.div 
+                      className="absolute inset-0 bg-accent"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </Button>
+                </motion.div>
+              </AnimatedSection>
+              <AnimatedSection delay={0.2}>
+                <motion.div 
+                  className="aspect-[4/3] bg-muted rounded-none overflow-hidden"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" 
+                    alt="Team collaboration"
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              </AnimatedSection>
             </div>
           </div>
         </div>
@@ -433,16 +556,22 @@ const Index = () => {
       </footer>
 
       {/* WhatsApp Button */}
-      <a 
+      <motion.a 
         href="https://wa.me/1234567890" 
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-all duration-300 shadow-lg hover:scale-110"
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg"
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+        animate={{ y: [0, -10, 0] }}
+        transition={{ 
+          y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+        }}
       >
         <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
-      </a>
+      </motion.a>
     </div>
   );
 };

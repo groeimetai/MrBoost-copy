@@ -51,6 +51,14 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 
+  * {
+    cursor: none !important;
+  }
+
+  button, a, input, textarea, select {
+    cursor: none !important;
+  }
+
   @keyframes marquee {
     from {
       transform: translateX(0);
