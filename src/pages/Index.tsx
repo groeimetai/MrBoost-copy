@@ -389,10 +389,10 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute top-6 left-6 z-10 flex flex-col items-start gap-2"
               >
-                <div className="border-2 border-white w-14 h-14 flex items-center justify-center bg-background/90 backdrop-blur-sm">
-                  <span className="text-2xl font-bold">B</span>
+                <div className="border-2 border-creme w-14 h-14 flex items-center justify-center bg-background/90 backdrop-blur-sm">
+                  <span className="text-2xl font-bold text-creme">B</span>
                 </div>
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white">
+                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-creme">
                   NEW
                 </span>
               </motion.div>
@@ -560,10 +560,10 @@ const Index = () => {
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6 relative z-10">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 italic">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 italic text-creme">
               What We Do
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-creme max-w-2xl mx-auto">
               Full-spectrum digital services tailored to elevate your brand
             </p>
           </AnimatedSection>
@@ -578,11 +578,11 @@ const Index = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Card 
-                  className="group p-8 bg-card border-border hover:border-foreground transition-all duration-300 cursor-pointer h-full"
+                  className="group p-8 bg-card border-border hover:border-creme transition-all duration-300 cursor-pointer h-full"
                 >
-                  <service.icon className="w-12 h-12 text-foreground mb-6 group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <service.icon className="w-12 h-12 text-creme mb-6 group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-2xl font-semibold mb-4 text-creme">{service.title}</h3>
+                  <p className="text-creme">{service.description}</p>
                 </Card>
               </motion.div>
             ))}
@@ -594,23 +594,23 @@ const Index = () => {
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 italic">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 italic text-creme">
               Featured Work
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-creme max-w-2xl mx-auto">
               A selection of our most impactful projects
             </p>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {portfolioProjects.map((project, index) => (
-              <motion.div 
+               <motion.div 
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="group relative overflow-hidden cursor-pointer border border-border hover:border-foreground transition-all duration-300"
+                className="group relative overflow-hidden cursor-pointer border border-border hover:border-creme transition-all duration-300"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img 
@@ -621,10 +621,10 @@ const Index = () => {
                 </div>
                 <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="text-center p-8">
-                    <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase mb-2 block">
+                    <span className="text-creme text-sm font-medium tracking-wider uppercase mb-2 block">
                       {project.category}
                     </span>
-                    <h3 className="text-3xl font-bold mb-4 italic">{project.title}</h3>
+                    <h3 className="text-3xl font-bold mb-4 italic text-creme">{project.title}</h3>
                     <Button variant="outline" size="sm">
                       View Project
                     </Button>
@@ -641,7 +641,7 @@ const Index = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <AnimatedSection>
-              <h2 className="text-5xl md:text-6xl font-bold mb-8 italic">
+              <h2 className="text-5xl md:text-6xl font-bold mb-8 italic text-creme">
                 We're Not Just Designers.
                 <span className="block mt-4">
                   We're Digital Storytellers.
@@ -649,7 +649,7 @@ const Index = () => {
               </h2>
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
-              <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
+              <p className="text-xl text-creme mb-12 leading-relaxed">
                 With a passion for innovation and an eye for detail, we transform brands through 
                 creative design, strategic thinking, and cutting-edge technology. Our mission is 
                 to create digital experiences that not only look stunning but deliver real results.
@@ -682,7 +682,7 @@ const Index = () => {
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <AnimatedSection>
-                <h2 className="text-5xl md:text-6xl font-bold mb-8 italic leading-tight">
+                <h2 className="text-5xl md:text-6xl font-bold mb-8 italic leading-tight text-creme">
                   READY FOR A BOOST?
                 </h2>
                 <motion.div 
