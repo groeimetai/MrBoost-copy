@@ -82,7 +82,7 @@ const Index = () => {
 
       {/* Fixed Navigation */}
       <div className="fixed top-12 left-0 right-0 z-40 px-6 py-6 bg-background/80 backdrop-blur-sm">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-center items-center gap-4">
           {/* Logo */}
           <div className="border border-foreground w-10 h-10 flex items-center justify-center">
             <span className="text-xl font-bold">B</span>
@@ -233,18 +233,19 @@ const Index = () => {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
-              className="flex flex-col sm:flex-row gap-0 justify-center items-center max-w-md mx-auto"
+              transition={{ duration: 0.8, delay: 1.8 }}
+              className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full"
             >
               <motion.div 
-                whileHover={{ scale: 1.08, y: -5 }} 
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03, y: -3 }} 
+                whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="w-full"
               >
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0 relative overflow-hidden group"
+                  className="w-full rounded-none border-t border-l border-r border-b-0 relative overflow-hidden group"
                   style={{
                     boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
                     transition: "box-shadow 0.3s ease",
@@ -266,14 +267,15 @@ const Index = () => {
                 </Button>
               </motion.div>
               <motion.div 
-                whileHover={{ scale: 1.08, y: -5 }} 
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03, y: -3 }} 
+                whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="w-full"
               >
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto min-w-[200px] rounded-none border-l border-r border-b relative overflow-hidden group"
+                  className="w-full rounded-none border-l border-r border-b relative overflow-hidden group"
                   style={{
                     boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
                     transition: "box-shadow 0.3s ease",
