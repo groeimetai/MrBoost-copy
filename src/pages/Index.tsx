@@ -332,20 +332,16 @@ const Index = () => {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div 
-              className="w-24 h-24 rounded-full border-2 flex items-center justify-center backdrop-blur-sm transition-all duration-500 relative"
+              className="w-32 h-32 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-500 relative"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              style={{
-                borderImage: "linear-gradient(135deg, #10B981, #A855F7, #EC4899) 1",
-                boxShadow: "0 0 30px rgba(16, 185, 129, 0.3)",
-              }}
             >
-              {/* Rotating text */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+              {/* Rotating text in arc */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 120 120">
                 <defs>
                   <path
                     id="circlePath"
-                    d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+                    d="M 60, 60 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"
                   />
                   <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#10B981" />
@@ -353,25 +349,34 @@ const Index = () => {
                     <stop offset="100%" stopColor="#EC4899" />
                   </linearGradient>
                 </defs>
-                <text className="text-[7px] font-medium tracking-[0.3em] uppercase" fill="url(#textGradient)">
+                <text className="text-[8px] font-medium tracking-[0.15em] uppercase" fill="url(#textGradient)">
                   <textPath href="#circlePath" startOffset="0%">
-                    SCROLL DOWN · SCROLL DOWN · SCROLL DOWN · 
+                    Scroll down · Scroll down · Scroll down · 
                   </textPath>
                 </text>
               </svg>
+              
+              {/* Center arrow pointing down - non-rotating */}
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="flex items-center justify-center"
               >
-                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                       <stop offset="0%" stopColor="#10B981" />
                       <stop offset="50%" stopColor="#A855F7" />
                       <stop offset="100%" stopColor="#EC4899" />
                     </linearGradient>
                   </defs>
-                  <path d="M5 12h14m-7-7l7 7-7 7" stroke="url(#arrowGradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" transform="rotate(-45 12 12)" />
+                  <path 
+                    d="M12 5v14m-7-7l7 7 7-7" 
+                    stroke="url(#arrowGradient)" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </motion.div>
             </motion.div>
