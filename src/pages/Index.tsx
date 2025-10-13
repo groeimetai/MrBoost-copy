@@ -230,12 +230,7 @@ const Index = () => {
                 ))}
               </motion.span>
             </h1>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.8 }}
-              className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full"
-            >
+            <div className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full">
               <motion.div 
                 whileHover={{ scale: 1.03, y: -3 }} 
                 whileTap={{ scale: 0.98 }}
@@ -296,7 +291,7 @@ const Index = () => {
                   />
                 </Button>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </div>
 
@@ -377,79 +372,80 @@ const Index = () => {
       {/* You've Got Great Taste Section */}
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <AnimatedSection>
-              <h2 className="text-5xl md:text-6xl font-bold mb-12 italic text-center">
-                YOU'VE GOT GREAT TASTE
-              </h2>
-            </AnimatedSection>
-            <p className="text-xl text-muted-foreground mb-16 leading-relaxed text-center">
-              Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
-            </p>
-            
-            <AnimatedSection delay={0.2}>
-              <div className="text-center">
-                <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
-                  Skills
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-12">
-                  {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
-                    <motion.div 
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="text-center"
-                    >
-                      <p className="text-lg font-medium">{skill}</p>
-                    </motion.div>
-                  ))}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-16 items-start">
+              {/* Left side: Title and Description */}
+              <AnimatedSection>
+                <h2 className="text-5xl md:text-6xl font-bold mb-8 italic">
+                  YOU'VE GOT GREAT TASTE
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
+                </p>
+              </AnimatedSection>
+              
+              {/* Right side: Skills */}
+              <AnimatedSection delay={0.2}>
+                <div>
+                  <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border pb-4">
+                    Skills
+                  </h3>
+                  <div className="flex flex-col gap-6">
+                    {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
+                      <motion.div 
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                      >
+                        <p className="text-xl font-medium">{skill}</p>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </AnimatedSection>
+              </AnimatedSection>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Awards Section */}
-      <section className="py-32 relative border-t border-border">
+      {/* Client Logos Section */}
+      <section className="py-16 relative border-t border-border overflow-hidden">
         <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-sm font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
-              Awards
-            </h2>
+          <AnimatedSection className="text-center mb-12">
+            <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
+              Aka Friends
+            </h3>
           </AnimatedSection>
-          <div className="max-w-4xl mx-auto text-center mb-20">
-            <AnimatedSection>
-              <h3 className="text-4xl md:text-5xl font-bold italic mb-16">
-                IT'S NOT JUST OUR MOMS WHO THINK WE'RE GREAT.
-              </h3>
-            </AnimatedSection>
-            <div className="flex justify-center items-center gap-16">
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="flex flex-col items-center"
-              >
-                <div className="text-6xl font-bold mb-4">W.</div>
-                <span className="text-sm text-muted-foreground">Awwwards</span>
-              </motion.div>
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="flex flex-col items-center"
-              >
-                <div className="text-6xl font-bold mb-4">CSSDA</div>
-                <span className="text-sm text-muted-foreground">CSSDA</span>
-              </motion.div>
-            </div>
+          <div className="flex items-center justify-center gap-16 flex-wrap">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.1 }}
+              className="text-4xl font-bold text-muted-foreground"
+            >
+              ChristenUnie
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.1 }}
+              className="text-4xl font-bold text-muted-foreground"
+            >
+              ASAHI
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.1 }}
+              className="text-4xl font-bold text-muted-foreground"
+            >
+              BP
+            </motion.div>
           </div>
         </div>
       </section>
