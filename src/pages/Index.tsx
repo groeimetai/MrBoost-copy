@@ -162,6 +162,50 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section className="py-32 relative border-t border-border">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="aspect-video bg-muted relative overflow-hidden border border-border">
+              <iframe 
+                src="https://player.vimeo.com/video/1101440320?title=0&byline=0&portrait=0"
+                className="absolute inset-0 w-full h-full"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* You've Got Great Taste Section */}
+      <section className="py-32 relative border-t border-border">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-6xl font-bold mb-12 italic text-center">
+              YOU'VE GOT GREAT TASTE
+            </h2>
+            <p className="text-xl text-muted-foreground mb-16 leading-relaxed text-center">
+              Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
+            </p>
+            
+            <div className="text-center">
+              <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
+                Skills
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mt-12">
+                {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
+                  <div key={index} className="text-center">
+                    <p className="text-lg font-medium">{skill}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Awards Section */}
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
