@@ -411,8 +411,8 @@ const Index = () => {
 
       {/* You've Got Great Taste Section */}
       <section className="py-32 relative border-t border-border">
-        <div className="container mx-auto px-6">
-          <div className="max-w-7xl mx-auto">
+        <div className="px-8 md:px-12 lg:px-16">
+          <div className="max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
               {/* Left Column: Title + Paragraph */}
               <motion.div
