@@ -3,7 +3,7 @@ export const NoiseOverlay = () => {
     <div 
       className="fixed inset-0 pointer-events-none z-[9999]"
       style={{
-        opacity: 0.04,
+        opacity: 0.05,
         mixBlendMode: 'overlay',
       }}
     >
@@ -11,7 +11,7 @@ export const NoiseOverlay = () => {
         <filter id="noise">
           <feTurbulence 
             type="fractalNoise" 
-            baseFrequency="0.8" 
+            baseFrequency="0.65" 
             numOctaves="4" 
             stitchTiles="stitch"
           />
