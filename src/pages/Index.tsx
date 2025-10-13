@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Spotlight } from "@/components/Spotlight";
+import { NoiseOverlay } from "@/components/NoiseOverlay";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
@@ -67,6 +68,7 @@ const Index = () => {
     <div className="min-h-screen bg-background cursor-none">
       <CustomCursor />
       <Spotlight />
+      <NoiseOverlay />
       {/* Top Ticker */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border overflow-hidden">
         <div className="flex items-center h-10">
@@ -124,6 +126,45 @@ const Index = () => {
         style={{ opacity, scale }}
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       >
+        {/* Starburst rays effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="ray-gradient">
+                <stop offset="0%" stopColor="rgba(16, 185, 129, 0.15)" />
+                <stop offset="50%" stopColor="rgba(31, 41, 55, 0.08)" />
+                <stop offset="100%" stopColor="rgba(0, 0, 0, 0)" />
+              </radialGradient>
+            </defs>
+            <g transform="translate(960, 540)">
+              {[...Array(32)].map((_, i) => {
+                const angle = (i * 11.25) * Math.PI / 180;
+                const x2 = Math.cos(angle) * 2500;
+                const y2 = Math.sin(angle) * 2500;
+                return (
+                  <motion.line
+                    key={i}
+                    x1="0"
+                    y1="0"
+                    x2={x2}
+                    y2={y2}
+                    stroke="url(#ray-gradient)"
+                    strokeWidth={i % 2 === 0 ? "2" : "1"}
+                    opacity={i % 3 === 0 ? 0.4 : 0.25}
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: i % 3 === 0 ? 0.4 : 0.25 }}
+                    transition={{ 
+                      duration: 2,
+                      delay: i * 0.05,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                  />
+                );
+              })}
+            </g>
+          </svg>
+        </div>
+        
         {/* Radial gradient background with parallax */}
         <motion.div 
           className="absolute inset-0"
@@ -132,35 +173,11 @@ const Index = () => {
           }}
         >
           <div 
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0 opacity-20"
             style={{
               background: 'radial-gradient(circle at center, transparent 0%, transparent 45%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.03) 45.5%, transparent 45.5%), radial-gradient(circle at center, transparent 0%, transparent 48%, rgba(255,255,255,0.03) 48%, rgba(255,255,255,0.03) 48.5%, transparent 48.5%), radial-gradient(circle at center, transparent 0%, transparent 51%, rgba(255,255,255,0.03) 51%, rgba(255,255,255,0.03) 51.5%, transparent 51.5%), radial-gradient(circle at center, transparent 0%, transparent 54%, rgba(255,255,255,0.03) 54%, rgba(255,255,255,0.03) 54.5%, transparent 54.5%), radial-gradient(circle at center, transparent 0%, transparent 57%, rgba(255,255,255,0.03) 57%, rgba(255,255,255,0.03) 57.5%, transparent 57.5%), radial-gradient(circle at center, transparent 0%, transparent 60%, rgba(255,255,255,0.03) 60%, rgba(255,255,255,0.03) 60.5%, transparent 60.5%)',
             }}
           />
-          {/* Radial lines emanating from center */}
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="radial-lines" x="50%" y="50%" width="100%" height="100%" patternUnits="userSpaceOnUse">
-                {[...Array(24)].map((_, i) => {
-                  const angle = (i * 15) * Math.PI / 180;
-                  const x2 = Math.cos(angle) * 2000;
-                  const y2 = Math.sin(angle) * 2000;
-                  return (
-                    <line
-                      key={i}
-                      x1="0"
-                      y1="0"
-                      x2={x2}
-                      y2={y2}
-                      stroke="rgba(255,255,255,0.05)"
-                      strokeWidth="1"
-                    />
-                  );
-                })}
-              </pattern>
-            </defs>
-            <rect x="0" y="0" width="100%" height="100%" fill="url(#radial-lines)" transform="translate(50%, 50%)" />
-          </svg>
         </motion.div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -180,10 +197,10 @@ const Index = () => {
                 {"WE DESIGN UNIQUE".split("").map((char, index) => (
                   <motion.span
                     key={`line1-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 0.7,
                       delay: 0.4 + index * 0.03,
                       ease: [0.22, 1, 0.36, 1],
                     }}
@@ -198,10 +215,10 @@ const Index = () => {
                 {"GRAPHIC AND WEB".split("").map((char, index) => (
                   <motion.span
                     key={`line2-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 0.7,
                       delay: 0.9 + index * 0.03,
                       ease: [0.22, 1, 0.36, 1],
                     }}
@@ -216,10 +233,10 @@ const Index = () => {
                 {"EXPERIENCES".split("").map((char, index) => (
                   <motion.span
                     key={`line3-${index}`}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 0.7,
                       delay: 1.4 + index * 0.03,
                       ease: [0.22, 1, 0.36, 1],
                     }}
@@ -230,17 +247,22 @@ const Index = () => {
                 ))}
               </motion.span>
             </h1>
-            <div className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 2, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full"
+            >
               <motion.div 
                 whileHover={{ 
-                  scale: 1.04, 
-                  y: -4,
+                  scale: 1.08, 
+                  y: -6,
                   transition: { 
-                    duration: 0.3,
+                    duration: 0.4,
                     ease: [0.22, 1, 0.36, 1]
                   }
                 }} 
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.96 }}
                 className="w-full"
               >
                 <Button 
@@ -269,14 +291,14 @@ const Index = () => {
               </motion.div>
               <motion.div 
                 whileHover={{ 
-                  scale: 1.04, 
-                  y: -4,
+                  scale: 1.08, 
+                  y: -6,
                   transition: { 
-                    duration: 0.3,
+                    duration: 0.4,
                     ease: [0.22, 1, 0.36, 1]
                   }
                 }} 
-                whileTap={{ scale: 0.98 }}
+                whileTap={{ scale: 0.96 }}
                 className="w-full"
               >
                 <Button 
@@ -303,7 +325,7 @@ const Index = () => {
                   />
                 </Button>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -521,23 +543,25 @@ const Index = () => {
             variants={{
               visible: {
                 transition: {
-                  staggerChildren: 0.15,
+                  staggerChildren: 0.2,
                   delayChildren: 0.2
                 }
               }
             }}
           >
-            {["ChristenUnie", "ASAHI", "BP"].map((logo) => (
+            {["ChristenUnie", "ASAHI", "BP"].map((logo, index) => (
               <motion.div
                 key={logo}
                 variants={{
-                  hidden: { opacity: 0, scale: 0.85, y: 20 },
+                  hidden: { 
+                    opacity: 0, 
+                    x: index % 2 === 0 ? -50 : 50,
+                  },
                   visible: { 
                     opacity: 1, 
-                    scale: 1, 
-                    y: 0,
+                    x: 0,
                     transition: {
-                      duration: 0.5,
+                      duration: 0.7,
                       ease: [0.22, 1, 0.36, 1]
                     }
                   }
@@ -604,12 +628,25 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {portfolioProjects.map((project, index) => (
-               <motion.div 
+              <motion.div 
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                whileHover={{ y: -12 }}
+                animate={{ 
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  opacity: { duration: 0.6, delay: index * 0.15 },
+                  scale: { duration: 0.6, delay: index * 0.15 },
+                  y: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.2
+                  }
+                }}
                 className="group relative overflow-hidden cursor-pointer border border-border hover:border-creme transition-all duration-300"
               >
                 <div className="aspect-[4/3] overflow-hidden">
