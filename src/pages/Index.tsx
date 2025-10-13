@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Sparkles, Palette, Code, Megaphone } from "lucide-react";
-import heroBackground from "@/assets/hero-bg.jpg";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
@@ -42,35 +41,60 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url(${heroBackground})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+        {/* Radial gradient background */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: 'radial-gradient(circle at center, transparent 0%, transparent 45%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.03) 45.5%, transparent 45.5%), radial-gradient(circle at center, transparent 0%, transparent 48%, rgba(255,255,255,0.03) 48%, rgba(255,255,255,0.03) 48.5%, transparent 48.5%), radial-gradient(circle at center, transparent 0%, transparent 51%, rgba(255,255,255,0.03) 51%, rgba(255,255,255,0.03) 51.5%, transparent 51.5%), radial-gradient(circle at center, transparent 0%, transparent 54%, rgba(255,255,255,0.03) 54%, rgba(255,255,255,0.03) 54.5%, transparent 54.5%), radial-gradient(circle at center, transparent 0%, transparent 57%, rgba(255,255,255,0.03) 57%, rgba(255,255,255,0.03) 57.5%, transparent 57.5%), radial-gradient(circle at center, transparent 0%, transparent 60%, rgba(255,255,255,0.03) 60%, rgba(255,255,255,0.03) 60.5%, transparent 60.5%)',
+            }}
+          />
+          {/* Radial lines emanating from center */}
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="radial-lines" x="50%" y="50%" width="100%" height="100%" patternUnits="userSpaceOnUse">
+                {[...Array(24)].map((_, i) => {
+                  const angle = (i * 15) * Math.PI / 180;
+                  const x2 = Math.cos(angle) * 2000;
+                  const y2 = Math.sin(angle) * 2000;
+                  return (
+                    <line
+                      key={i}
+                      x1="0"
+                      y1="0"
+                      x2={x2}
+                      y2={y2}
+                      stroke="rgba(255,255,255,0.05)"
+                      strokeWidth="1"
+                    />
+                  );
+                })}
+              </pattern>
+            </defs>
+            <rect x="0" y="0" width="100%" height="100%" fill="url(#radial-lines)" transform="translate(50%, 50%)" />
+          </svg>
+        </div>
         
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-5xl mx-auto text-center animate-fade-in-up">
-            <div className="inline-block mb-6">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">
-                Creative Digital Agency
+          <div className="max-w-6xl mx-auto text-center">
+            <div className="mb-12">
+              <span className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
+                Creative agency
               </span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
-              We Craft
-              <span className="block bg-gradient-primary bg-clip-text text-transparent animate-glow-pulse">
-                Digital Excellence
-              </span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic">
+              WE DESIGN UNIQUE
+              <br />
+              GRAPHIC AND WEB
+              <br />
+              EXPERIENCES
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-              Transforming bold ideas into stunning digital experiences that captivate audiences and drive results.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="lg" className="group">
-                Start Your Project
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            <div className="flex flex-col sm:flex-row gap-0 justify-center items-center max-w-md mx-auto">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0">
+                Cases
               </Button>
-              <Button variant="glowOutline" size="lg">
-                View Our Work
+              <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-l border-r border-b">
+                Contact
               </Button>
             </div>
           </div>
@@ -78,11 +102,10 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-glow opacity-20 blur-3xl" />
+      <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 italic">
               What We Do
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -94,9 +117,9 @@ const Index = () => {
             {services.map((service, index) => (
               <Card 
                 key={index}
-                className="group p-8 bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-glow cursor-pointer"
+                className="group p-8 bg-card border-border hover:border-foreground transition-all duration-300 cursor-pointer"
               >
-                <service.icon className="w-12 h-12 text-primary mb-6 group-hover:scale-110 transition-transform duration-300" />
+                <service.icon className="w-12 h-12 text-foreground mb-6 group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
                 <p className="text-muted-foreground">{service.description}</p>
               </Card>
@@ -106,10 +129,10 @@ const Index = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-32 relative">
+      <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 italic">
               Featured Work
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -121,24 +144,23 @@ const Index = () => {
             {projects.map((project, index) => (
               <div 
                 key={index}
-                className="group relative overflow-hidden rounded-lg cursor-pointer"
+                className="group relative overflow-hidden cursor-pointer border border-border hover:border-foreground transition-all duration-300"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img 
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <span className="text-accent text-sm font-semibold tracking-wider uppercase mb-2 block">
+                <div className="absolute inset-0 bg-background/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <span className="text-muted-foreground text-sm font-medium tracking-wider uppercase mb-2 block">
                       {project.category}
                     </span>
-                    <h3 className="text-3xl font-bold mb-4">{project.title}</h3>
-                    <Button variant="hero" size="sm" className="group/btn">
+                    <h3 className="text-3xl font-bold mb-4 italic">{project.title}</h3>
+                    <Button variant="outline" size="sm">
                       View Project
-                      <ArrowRight className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </div>
                 </div>
@@ -149,13 +171,12 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-glow opacity-10 blur-3xl" />
+      <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 italic">
               We're Not Just Designers.
-              <span className="block bg-gradient-primary bg-clip-text text-transparent mt-4">
+              <span className="block mt-4">
                 We're Digital Storytellers.
               </span>
             </h2>
@@ -164,7 +185,7 @@ const Index = () => {
               creative design, strategic thinking, and cutting-edge technology. Our mission is 
               to create digital experiences that not only look stunning but deliver real results.
             </p>
-            <Button variant="glowOutline" size="lg">
+            <Button variant="outline" size="lg">
               Learn More About Us
             </Button>
           </div>
@@ -172,19 +193,17 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-primary opacity-10" />
+      <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            <h2 className="text-5xl md:text-6xl font-bold mb-8 italic">
               Ready to Start Something Great?
             </h2>
             <p className="text-xl text-muted-foreground mb-12">
               Let's collaborate and bring your vision to life.
             </p>
-            <Button variant="hero" size="lg" className="group">
+            <Button variant="outline" size="lg">
               Get In Touch
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
@@ -198,13 +217,13 @@ const Index = () => {
               © 2025 Creative Agency. All rights reserved.
             </p>
             <div className="flex gap-8">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 Privacy Policy
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </a>
             </div>
