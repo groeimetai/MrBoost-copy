@@ -332,9 +332,9 @@ const Index = () => {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div 
-              className="w-32 h-32 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-500 relative"
+              className="w-32 h-32 rounded-full flex items-center justify-center backdrop-blur-sm relative"
               style={{
-                rotate: useTransform(scrollYProgress, [0, 1], [0, 360])
+                rotate: useTransform(scrollYProgress, [0, 1], [0, 720])
               }}
             >
               {/* Rotating text in arc */}
@@ -355,7 +355,7 @@ const Index = () => {
               {/* Center arrow pointing down - non-rotating */}
               <motion.div
                 style={{
-                  rotate: useTransform(scrollYProgress, [0, 1], [0, -360])
+                  rotate: useTransform(scrollYProgress, [0, 1], [0, -720])
                 }}
                 className="flex items-center justify-center"
               >
