@@ -307,13 +307,13 @@ const Index = () => {
             opacity: { duration: 0.8, delay: 2 },
             scale: { duration: 0.8, delay: 2, type: "spring" },
             y: { 
-              duration: 2,
+              duration: 2.5,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 3,
             }
           }}
-          className="absolute bottom-12 right-12 flex flex-col items-center gap-3 cursor-pointer group"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer group"
         >
           <motion.div 
             className="relative"
@@ -322,14 +322,15 @@ const Index = () => {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div 
-              className="w-20 h-20 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent/20 backdrop-blur-sm transition-all duration-300 relative"
+              className="w-24 h-24 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent/10 backdrop-blur-sm transition-all duration-500 relative"
               animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               style={{
-                boxShadow: "0 0 20px rgba(74, 222, 128, 0.3)",
+                boxShadow: "0 0 30px rgba(74, 222, 128, 0.2)",
               }}
               whileHover={{
-                boxShadow: "0 0 40px rgba(74, 222, 128, 0.6)",
+                boxShadow: "0 0 50px rgba(74, 222, 128, 0.5)",
+                transition: { duration: 0.3 }
               }}
             >
               {/* Rotating text */}
@@ -337,16 +338,21 @@ const Index = () => {
                 <defs>
                   <path
                     id="circlePath"
-                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                    d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
                   />
                 </defs>
-                <text className="text-[8px] fill-accent font-medium tracking-widest uppercase">
+                <text className="text-[7px] fill-accent font-medium tracking-[0.3em] uppercase">
                   <textPath href="#circlePath" startOffset="0%">
-                    Scroll down • Scroll down • 
+                    SCROLL DOWN · SCROLL DOWN · SCROLL DOWN · 
                   </textPath>
                 </text>
               </svg>
-              <ArrowRight className="w-6 h-6 -rotate-45 text-accent group-hover:text-accent transition-all duration-300 relative z-10" />
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <ArrowRight className="w-7 h-7 -rotate-45 text-accent transition-all duration-300" />
+              </motion.div>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -357,6 +363,28 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <AnimatedSection className="max-w-5xl mx-auto">
             <div className="aspect-video bg-muted relative overflow-hidden border border-border">
+              {/* Logo Overlay */}
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute top-8 left-8 z-10"
+              >
+                <div className="border border-white w-16 h-16 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+                  <span className="text-3xl font-bold">B</span>
+                </div>
+                <motion.span 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="text-xs font-medium tracking-wider uppercase mt-2 block text-center"
+                >
+                  NEW
+                </motion.span>
+              </motion.div>
+              
               <iframe 
                 src="https://player.vimeo.com/video/1101440320?title=0&byline=0&portrait=0"
                 className="absolute inset-0 w-full h-full"
@@ -373,33 +401,53 @@ const Index = () => {
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-16 items-start">
+            <div className="grid md:grid-cols-2 gap-20 items-start">
               {/* Left side: Title and Description */}
               <AnimatedSection>
-                <h2 className="text-5xl md:text-6xl font-bold mb-8 italic">
+                <motion.h2 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-6xl md:text-7xl font-bold mb-10 italic text-left leading-[1.1]"
+                >
                   YOU'VE GOT GREAT TASTE
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                </motion.h2>
+                <motion.p 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-lg text-muted-foreground leading-relaxed text-left"
+                >
                   Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
-                </p>
+                </motion.p>
               </AnimatedSection>
               
               {/* Right side: Skills */}
               <AnimatedSection delay={0.2}>
-                <div>
-                  <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border pb-4">
+                <div className="text-right">
+                  <motion.h3 
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border pb-4 inline-block"
+                  >
                     Skills
-                  </h3>
-                  <div className="flex flex-col gap-6">
+                  </motion.h3>
+                  <div className="flex flex-col gap-6 items-end">
                     {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
                       <motion.div 
                         key={index}
-                        initial={{ opacity: 0, x: 20 }}
+                        initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                        whileHover={{ x: -10, scale: 1.05 }}
+                        className="cursor-pointer"
                       >
-                        <p className="text-xl font-medium">{skill}</p>
+                        <p className="text-2xl md:text-3xl font-medium">{skill}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -419,33 +467,27 @@ const Index = () => {
             </h3>
           </AnimatedSection>
           <div className="flex items-center justify-center gap-16 flex-wrap">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1 }}
-              className="text-4xl font-bold text-muted-foreground"
-            >
-              ChristenUnie
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1 }}
-              className="text-4xl font-bold text-muted-foreground"
-            >
-              ASAHI
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.1 }}
-              className="text-4xl font-bold text-muted-foreground"
-            >
-              BP
-            </motion.div>
+            {["ChristenUnie", "ASAHI", "BP"].map((logo, index) => (
+              <motion.div
+                key={logo}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.2,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ 
+                  scale: 1.15, 
+                  y: -5,
+                  transition: { duration: 0.3 }
+                }}
+                className="text-4xl font-bold text-muted-foreground cursor-pointer"
+              >
+                {logo}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
