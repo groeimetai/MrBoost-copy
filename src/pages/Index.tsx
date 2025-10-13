@@ -124,8 +124,13 @@ const Index = () => {
         style={{ opacity, scale }}
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       >
-        {/* Radial gradient background */}
-        <div className="absolute inset-0">
+        {/* Radial gradient background with parallax */}
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            y: useTransform(scrollYProgress, [0, 0.5], [0, -100]),
+          }}
+        >
           <div 
             className="absolute inset-0 opacity-30"
             style={{
@@ -156,7 +161,7 @@ const Index = () => {
             </defs>
             <rect x="0" y="0" width="100%" height="100%" fill="url(#radial-lines)" transform="translate(50%, 50%)" />
           </svg>
-        </div>
+        </motion.div>
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
@@ -170,39 +175,61 @@ const Index = () => {
                 Creative agency
               </span>
             </motion.div>
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic"
-            >
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="inline-block"
-              >
-                WE DESIGN UNIQUE
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic">
+              <motion.span className="inline-block">
+                {"WE DESIGN UNIQUE".split("").map((char, index) => (
+                  <motion.span
+                    key={`line1-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.4 + index * 0.03,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="inline-block"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
               </motion.span>
               <br />
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className="inline-block"
-              >
-                GRAPHIC AND WEB
+              <motion.span className="inline-block">
+                {"GRAPHIC AND WEB".split("").map((char, index) => (
+                  <motion.span
+                    key={`line2-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.9 + index * 0.03,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="inline-block"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
               </motion.span>
               <br />
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-                className="inline-block"
-              >
-                EXPERIENCES
+              <motion.span className="inline-block">
+                {"EXPERIENCES".split("").map((char, index) => (
+                  <motion.span
+                    key={`line3-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 1.4 + index * 0.03,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="inline-block"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
               </motion.span>
-            </motion.h1>
+            </h1>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -214,13 +241,27 @@ const Index = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0 relative overflow-hidden group">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full sm:w-auto min-w-[200px] rounded-none border-t border-l border-r sm:border-r-0 border-b-0 relative overflow-hidden group"
+                  style={{
+                    boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
+                    transition: "box-shadow 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = "0 0 30px rgba(74, 222, 128, 0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
+                  }}
+                >
                   <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Cases</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
                     initial={{ x: "-100%", skewX: -20 }}
                     whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   />
                 </Button>
               </motion.div>
@@ -229,13 +270,27 @@ const Index = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <Button variant="outline" size="lg" className="w-full sm:w-auto min-w-[200px] rounded-none border-l border-r border-b relative overflow-hidden group">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full sm:w-auto min-w-[200px] rounded-none border-l border-r border-b relative overflow-hidden group"
+                  style={{
+                    boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
+                    transition: "box-shadow 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = "0 0 30px rgba(74, 222, 128, 0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
+                  }}
+                >
                   <span className="relative z-10 transition-colors duration-300 group-hover:text-background">Contact</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
                     initial={{ x: "-100%", skewX: -20 }}
                     whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   />
                 </Button>
               </motion.div>
@@ -246,13 +301,26 @@ const Index = () => {
         {/* Scroll Indicator */}
         <motion.div 
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 1.3, type: "spring" }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1,
+            y: [0, -10, 0],
+          }}
+          transition={{ 
+            opacity: { duration: 0.8, delay: 2 },
+            scale: { duration: 0.8, delay: 2, type: "spring" },
+            y: { 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3,
+            }
+          }}
           className="absolute bottom-12 right-12 flex flex-col items-center gap-3 cursor-pointer group"
         >
           <motion.div 
             className="relative"
-            whileHover={{ scale: 1.15 }}
+            whileHover={{ scale: 1.15, y: 0 }}
             whileTap={{ scale: 0.85 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
@@ -262,6 +330,9 @@ const Index = () => {
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
               style={{
                 boxShadow: "0 0 20px rgba(74, 222, 128, 0.3)",
+              }}
+              whileHover={{
+                boxShadow: "0 0 40px rgba(74, 222, 128, 0.6)",
               }}
             >
               {/* Rotating text */}
