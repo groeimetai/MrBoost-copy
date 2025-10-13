@@ -10,6 +10,9 @@ All colors MUST be HSL.
   :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
+    
+    --creme: 40 11% 90%;
+    --creme-foreground: 0 0% 0%;
 
     --card: 0 0% 5%;
     --card-foreground: 0 0% 100%;
@@ -26,7 +29,7 @@ All colors MUST be HSL.
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 147 51% 47%;
+    --accent: 160 84% 39%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;

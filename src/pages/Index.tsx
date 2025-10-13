@@ -171,11 +171,11 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-12"
             >
-              <span className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
+              <span className="text-creme text-xs font-medium tracking-[0.2em] uppercase">
                 Creative agency
               </span>
             </motion.div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.1] italic text-creme">
               <motion.span className="inline-block">
                 {"WE DESIGN UNIQUE".split("").map((char, index) => (
                   <motion.span
@@ -422,7 +422,7 @@ const Index = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="text-left"
               >
-                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 italic leading-[1.05] tracking-tight">
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 italic leading-[1.05] tracking-tight text-creme">
                   YOU'VE GOT GREAT TASTE
                 </h2>
                 <motion.p 
@@ -430,7 +430,7 @@ const Index = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-base md:text-lg text-muted-foreground leading-relaxed"
+                  className="text-base md:text-lg text-creme leading-relaxed"
                 >
                   Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
                 </motion.p>
@@ -442,15 +442,18 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className="text-right flex flex-col"
+                className="text-right flex flex-col relative"
               >
+                {/* Vertical line on the left */}
+                <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+                
                 <motion.h3 
-                  className="text-xs font-medium tracking-[0.3em] uppercase mb-8 text-right"
+                  className="text-xs font-medium tracking-[0.3em] uppercase mb-8 text-right text-creme pl-8"
                 >
                   SKILLS
                 </motion.h3>
                 <motion.div 
-                  className="flex flex-col gap-6"
+                  className="flex flex-col gap-6 pl-8"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
@@ -486,7 +489,7 @@ const Index = () => {
                       }}
                       className="cursor-pointer text-right"
                     >
-                      <p className="text-xl md:text-2xl font-medium">{skill}</p>
+                      <p className="text-xl md:text-2xl font-medium italic text-creme">{skill}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -724,21 +727,21 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border py-12">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div className="flex flex-col gap-4">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-creme">
                 © All Rights Reserved
               </p>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span className="text-sm">Beschikbaar voor nieuwe projecten</span>
+                <div className="w-2 h-2 rounded-full bg-accent"></div>
+                <span className="text-sm text-accent">Beschikbaar voor nieuwe projecten</span>
               </div>
             </div>
             
             <div className="flex gap-6">
               <motion.a 
                 href="#" 
-                className="text-muted-foreground hover:text-accent transition-colors"
+                className="text-creme hover:text-accent transition-colors"
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -748,7 +751,7 @@ const Index = () => {
               </motion.a>
               <motion.a 
                 href="#" 
-                className="text-muted-foreground hover:text-accent transition-colors"
+                className="text-creme hover:text-accent transition-colors"
                 whileHover={{ scale: 1.2, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -758,7 +761,7 @@ const Index = () => {
               </motion.a>
               <motion.a 
                 href="#" 
-                className="text-muted-foreground hover:text-accent transition-colors"
+                className="text-creme hover:text-accent transition-colors"
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
