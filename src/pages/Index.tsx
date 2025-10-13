@@ -233,10 +233,10 @@ const Index = () => {
             <div className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full">
               <motion.div 
                 whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
+                  scale: 1.04, 
+                  y: -4,
                   transition: { 
-                    duration: 0.4,
+                    duration: 0.3,
                     ease: [0.22, 1, 0.36, 1]
                   }
                 }} 
@@ -246,34 +246,33 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full rounded-none border-t border-l border-r border-b-0 relative overflow-hidden group transition-all duration-500"
+                  className="w-full rounded-none border-t border-l border-r border-b-0 relative overflow-hidden group"
                   style={{
                     boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
+                    transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.6)";
-                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.5)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
-                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
                   }}
                 >
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-background font-medium">Cases</span>
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background font-medium tracking-wide">Cases</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%", skewX: -15 }}
+                    initial={{ x: "-100%", skewX: -12 }}
                     whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Button>
               </motion.div>
               <motion.div 
                 whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
+                  scale: 1.04, 
+                  y: -4,
                   transition: { 
-                    duration: 0.4,
+                    duration: 0.3,
                     ease: [0.22, 1, 0.36, 1]
                   }
                 }} 
@@ -283,25 +282,24 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full rounded-none border-l border-r border-b relative overflow-hidden group transition-all duration-500"
+                  className="w-full rounded-none border-l border-r border-b relative overflow-hidden group"
                   style={{
                     boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
+                    transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.6)";
-                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.5)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
-                    e.currentTarget.style.transition = "box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
                   }}
                 >
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-background font-medium">Contact</span>
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background font-medium tracking-wide">Contact</span>
                   <motion.div 
                     className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%", skewX: -15 }}
+                    initial={{ x: "-100%", skewX: -12 }}
                     whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Button>
               </motion.div>
@@ -375,28 +373,28 @@ const Index = () => {
       {/* Video Section */}
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
-          <AnimatedSection className="max-w-5xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-5xl mx-auto"
+          >
             <div className="aspect-video bg-muted relative overflow-hidden border border-border">
-              {/* Logo Overlay */}
+              {/* Logo Overlay - Top Left */}
               <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="absolute top-8 left-8 z-10"
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute top-6 left-6 z-10 flex flex-col items-start gap-2"
               >
-                <div className="border border-white w-16 h-16 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-                  <span className="text-3xl font-bold">B</span>
+                <div className="border-2 border-white w-14 h-14 flex items-center justify-center bg-background/90 backdrop-blur-sm">
+                  <span className="text-2xl font-bold">B</span>
                 </div>
-                <motion.span 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  className="text-xs font-medium tracking-wider uppercase mt-2 block text-center"
-                >
+                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white">
                   NEW
-                </motion.span>
+                </span>
               </motion.div>
               
               <iframe 
@@ -407,63 +405,60 @@ const Index = () => {
                 allowFullScreen
               ></iframe>
             </div>
-          </AnimatedSection>
+          </motion.div>
         </div>
       </section>
 
       {/* You've Got Great Taste Section */}
       <section className="py-32 relative border-t border-border">
-        <div className="container mx-auto px-8 md:px-12 lg:px-16">
+        <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-24 items-start">
-              {/* Left side: Title and Description */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
+              {/* Left Column: Title + Paragraph */}
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="text-left"
               >
-                <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-10 italic text-left leading-[0.95] tracking-tight">
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 italic leading-[1.05] tracking-tight">
                   YOU'VE GOT GREAT TASTE
                 </h2>
                 <motion.p 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-lg md:text-xl text-muted-foreground leading-relaxed text-left"
+                  transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-base md:text-lg text-muted-foreground leading-relaxed"
                 >
                   Wij staan voor digital experiences. Al meer dan 6 jaar werken wij aan mooie projecten voor o.a Dunkin', Foodticket, GoVolt, Vandal, Grolsch, Delfts Blauw, Jumbo en 50+ andere toffe merken. Met liefde voor het vak en de creatieve skills in ons team maken wij Ideeën en doelen werkelijk. Let's boost your brand!
                 </motion.p>
               </motion.div>
               
-              {/* Right side: Skills */}
+              {/* Right Column: Skills */}
               <motion.div 
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-right"
+                transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="text-right flex flex-col"
               >
                 <motion.h3 
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-xs font-medium tracking-[0.3em] uppercase mb-10 border-b border-border pb-4 inline-block"
+                  className="text-xs font-medium tracking-[0.3em] uppercase mb-8 text-right"
                 >
-                  Skills
+                  SKILLS
                 </motion.h3>
                 <motion.div 
-                  className="flex flex-col gap-7 items-end"
+                  className="flex flex-col gap-6"
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
                   variants={{
                     visible: {
                       transition: {
-                        staggerChildren: 0.12,
-                        delayChildren: 0.4
+                        staggerChildren: 0.1,
+                        delayChildren: 0.3
                       }
                     }
                   }}
@@ -472,28 +467,26 @@ const Index = () => {
                     <motion.div 
                       key={index}
                       variants={{
-                        hidden: { opacity: 0, x: 40, scale: 0.95 },
+                        hidden: { opacity: 0, x: 30 },
                         visible: { 
                           opacity: 1, 
                           x: 0,
-                          scale: 1,
                           transition: {
-                            duration: 0.6,
+                            duration: 0.5,
                             ease: [0.22, 1, 0.36, 1]
                           }
                         }
                       }}
                       whileHover={{ 
-                        x: -12, 
-                        scale: 1.08,
+                        x: -8,
                         transition: { 
                           duration: 0.3,
                           ease: [0.22, 1, 0.36, 1]
                         }
                       }}
-                      className="cursor-pointer"
+                      className="cursor-pointer text-right"
                     >
-                      <p className="text-2xl md:text-3xl lg:text-4xl font-medium">{skill}</p>
+                      <p className="text-xl md:text-2xl font-medium">{skill}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -504,36 +497,59 @@ const Index = () => {
       </section>
 
       {/* Client Logos Section */}
-      <section className="py-16 relative border-t border-border overflow-hidden">
+      <section className="py-20 relative border-t border-border overflow-hidden">
         <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-12">
-            <h3 className="text-xs font-medium tracking-[0.2em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mb-12"
+          >
+            <h3 className="text-xs font-medium tracking-[0.3em] uppercase mb-8 border-b border-border inline-block pb-4 px-8">
               Aka Friends
             </h3>
-          </AnimatedSection>
-          <div className="flex items-center justify-center gap-16 flex-wrap">
-            {["ChristenUnie", "ASAHI", "BP"].map((logo, index) => (
+          </motion.div>
+          <motion.div 
+            className="flex items-center justify-center gap-16 flex-wrap"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.15,
+                  delayChildren: 0.2
+                }
+              }
+            }}
+          >
+            {["ChristenUnie", "ASAHI", "BP"].map((logo) => (
               <motion.div
                 key={logo}
-                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.2,
-                  ease: [0.22, 1, 0.36, 1]
+                variants={{
+                  hidden: { opacity: 0, scale: 0.85, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    scale: 1, 
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1]
+                    }
+                  }
                 }}
                 whileHover={{ 
-                  scale: 1.15, 
-                  y: -5,
-                  transition: { duration: 0.3 }
+                  scale: 1.12, 
+                  y: -8,
+                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
                 }}
-                className="text-4xl font-bold text-muted-foreground cursor-pointer"
+                className="text-4xl md:text-5xl font-bold text-muted-foreground cursor-pointer"
               >
                 {logo}
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
