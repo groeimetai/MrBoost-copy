@@ -1,12 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Sparkles, Palette, Code, Megaphone } from "lucide-react";
+import { ArrowRight, Sparkles, Palette, Code, Megaphone, Menu, ArrowDown } from "lucide-react";
+import { useEffect, useState } from "react";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
 
 const Index = () => {
+  const [currentProject, setCurrentProject] = useState(0);
+  const projects = [
+    "Website experience INFOCASTER",
+    "Vormgeven Gin etiketten R&L-ANN",
+    "Re-branding DOUCHE-CONCURRENT",
+    "Videocommercial GOVOLT",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentProject((prev) => (prev + 1) % projects.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   const services = [
     {
       icon: Code,
@@ -30,7 +46,7 @@ const Index = () => {
     },
   ];
 
-  const projects = [
+  const portfolioProjects = [
     { image: project1, title: "E-Commerce Platform", category: "Web Development" },
     { image: project2, title: "Mobile Banking App", category: "App Design" },
     { image: project3, title: "Brand Identity System", category: "Branding" },
@@ -39,8 +55,32 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Top Ticker */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border overflow-hidden">
+        <div className="flex items-center h-10 whitespace-nowrap">
+          <span className="text-xs font-medium tracking-wider px-4 animate-marquee inline-block">
+            NOW CREATING &nbsp;&nbsp;&nbsp; {projects[currentProject]}
+          </span>
+        </div>
+      </div>
+
+      {/* Fixed Navigation */}
+      <div className="fixed top-12 left-0 right-0 z-40 px-6 py-6">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <div className="border border-foreground px-4 py-2">
+            <span className="text-2xl font-bold italic">B</span>
+          </div>
+          
+          {/* Menu */}
+          <button className="border border-foreground p-3 hover:bg-foreground hover:text-background transition-all duration-300">
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Radial gradient background */}
         <div className="absolute inset-0">
           <div 
@@ -99,6 +139,16 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-12 right-12 flex flex-col items-center gap-2 cursor-pointer group">
+          <div className="border border-foreground rounded-full p-3 group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+            <ArrowDown className="w-5 h-5 animate-bounce" />
+          </div>
+          <span className="text-xs font-medium tracking-wider uppercase writing-mode-vertical rotate-180">
+            Scroll down
+          </span>
+        </div>
       </section>
 
       {/* Services Section */}
@@ -141,7 +191,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
+            {portfolioProjects.map((project, index) => (
               <div 
                 key={index}
                 className="group relative overflow-hidden cursor-pointer border border-border hover:border-foreground transition-all duration-300"

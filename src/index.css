@@ -50,4 +50,21 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  .writing-mode-vertical {
+    writing-mode: vertical-rl;
+  }
 }
