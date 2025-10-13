@@ -255,75 +255,51 @@ const Index = () => {
             >
               <motion.div 
                 whileHover={{ 
-                  scale: 1.08, 
-                  y: -6,
+                  scale: 1.05, 
+                  y: -4,
                   transition: { 
                     duration: 0.4,
                     ease: [0.22, 1, 0.36, 1]
                   }
                 }} 
-                whileTap={{ scale: 0.96 }}
-                className="w-full"
+                whileTap={{ scale: 0.98 }}
+                className="w-full relative group"
               >
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full rounded-none border-t border-l border-r border-b-0 relative overflow-hidden group"
-                  style={{
-                    boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
-                    transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.5)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
-                  }}
+                <button
+                  className="w-full h-[50px] rounded-none border-t border-l border-r border-b-0 border-creme relative overflow-hidden bg-transparent text-creme font-medium tracking-wide transition-all duration-300"
                 >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background font-medium tracking-wide">Cases</span>
+                  <span className="relative z-10 group-hover:text-background transition-colors duration-500">Cases</span>
                   <motion.div 
-                    className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%", skewX: -12 }}
-                    whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute bottom-0 left-0 right-0 bg-creme"
+                    initial={{ height: "0%" }}
+                    whileHover={{ height: "100%" }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   />
-                </Button>
+                </button>
               </motion.div>
               <motion.div 
                 whileHover={{ 
-                  scale: 1.08, 
-                  y: -6,
+                  scale: 1.05, 
+                  y: -4,
                   transition: { 
                     duration: 0.4,
                     ease: [0.22, 1, 0.36, 1]
                   }
                 }} 
-                whileTap={{ scale: 0.96 }}
-                className="w-full"
+                whileTap={{ scale: 0.98 }}
+                className="w-full relative group"
               >
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full rounded-none border-l border-r border-b relative overflow-hidden group"
-                  style={{
-                    boxShadow: "0 0 0 rgba(74, 222, 128, 0)",
-                    transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 40px rgba(74, 222, 128, 0.5)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = "0 0 0 rgba(74, 222, 128, 0)";
-                  }}
+                <button
+                  className="w-full h-[50px] rounded-none border-l border-r border-b border-creme relative overflow-hidden bg-transparent text-creme font-medium tracking-wide transition-all duration-300"
                 >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-background font-medium tracking-wide">Contact</span>
+                  <span className="relative z-10 group-hover:text-background transition-colors duration-500">Contact</span>
                   <motion.div 
-                    className="absolute inset-0 bg-accent"
-                    initial={{ x: "-100%", skewX: -12 }}
-                    whileHover={{ x: 0, skewX: 0 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute bottom-0 left-0 right-0 bg-creme"
+                    initial={{ height: "0%" }}
+                    whileHover={{ height: "100%" }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   />
-                </Button>
+                </button>
               </motion.div>
             </motion.div>
           </div>
@@ -356,15 +332,12 @@ const Index = () => {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div 
-              className="w-24 h-24 rounded-full border-2 border-accent flex items-center justify-center group-hover:bg-accent/10 backdrop-blur-sm transition-all duration-500 relative"
+              className="w-24 h-24 rounded-full border-2 flex items-center justify-center backdrop-blur-sm transition-all duration-500 relative"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               style={{
-                boxShadow: "0 0 30px rgba(74, 222, 128, 0.2)",
-              }}
-              whileHover={{
-                boxShadow: "0 0 50px rgba(74, 222, 128, 0.5)",
-                transition: { duration: 0.3 }
+                borderImage: "linear-gradient(135deg, #10B981, #A855F7, #EC4899) 1",
+                boxShadow: "0 0 30px rgba(16, 185, 129, 0.3)",
               }}
             >
               {/* Rotating text */}
@@ -374,8 +347,13 @@ const Index = () => {
                     id="circlePath"
                     d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
                   />
+                  <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10B981" />
+                    <stop offset="50%" stopColor="#A855F7" />
+                    <stop offset="100%" stopColor="#EC4899" />
+                  </linearGradient>
                 </defs>
-                <text className="text-[7px] fill-accent font-medium tracking-[0.3em] uppercase">
+                <text className="text-[7px] font-medium tracking-[0.3em] uppercase" fill="url(#textGradient)">
                   <textPath href="#circlePath" startOffset="0%">
                     SCROLL DOWN · SCROLL DOWN · SCROLL DOWN · 
                   </textPath>
@@ -385,7 +363,16 @@ const Index = () => {
                 animate={{ rotate: -360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <ArrowRight className="w-7 h-7 -rotate-45 text-accent transition-all duration-300" />
+                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#10B981" />
+                      <stop offset="50%" stopColor="#A855F7" />
+                      <stop offset="100%" stopColor="#EC4899" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M5 12h14m-7-7l7 7-7 7" stroke="url(#arrowGradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" transform="rotate(-45 12 12)" />
+                </svg>
               </motion.div>
             </motion.div>
           </motion.div>

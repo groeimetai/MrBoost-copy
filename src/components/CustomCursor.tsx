@@ -46,14 +46,14 @@ export const CustomCursor = () => {
     <>
       {/* Inner dot */}
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-[9999]"
         style={{
-          background: "rgb(74, 222, 128)",
-          boxShadow: "0 0 10px rgba(74, 222, 128, 0.5)",
+          background: "linear-gradient(135deg, #10B981, #A855F7, #EC4899)",
+          boxShadow: "0 0 15px rgba(168, 85, 247, 0.5)",
         }}
         animate={{
-          x: mousePosition.x - 6,
-          y: mousePosition.y - 6,
+          x: mousePosition.x - 8,
+          y: mousePosition.y - 8,
           scale: isClicking ? 0.5 : isHovering ? 0 : 1,
         }}
         transition={{
@@ -65,9 +65,12 @@ export const CustomCursor = () => {
       />
       {/* Outer ring */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 border border-accent rounded-full pointer-events-none z-[9998]"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998]"
         style={{
-          borderColor: "rgb(74, 222, 128)",
+          border: "2px solid transparent",
+          backgroundImage: "linear-gradient(black, black), linear-gradient(135deg, #10B981, #A855F7, #EC4899)",
+          backgroundOrigin: "border-box",
+          backgroundClip: "padding-box, border-box",
         }}
         animate={{
           x: mousePosition.x - 20,
