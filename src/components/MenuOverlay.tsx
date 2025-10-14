@@ -8,10 +8,10 @@ interface MenuOverlayProps {
 
 export const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
   const menuItems = [
-    { label: "HOME", href: "/" },
     { label: "ABOUT", href: "/about" },
     { label: "CASES", href: "/cases" },
     { label: "CONTACT", href: "/contact" },
+    { label: "TIKTOK", href: "https://tiktok.com" },
   ];
 
   return (
@@ -26,17 +26,17 @@ export const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-black z-[100]"
           >
-            {/* Grid Lines - 3 vertical lines */}
+            {/* Grid Lines */}
             <div className="absolute inset-0 pointer-events-none z-[99]">
-              {/* Left vertical line at 25% */}
-              <div className="absolute left-[25%] top-0 bottom-0 w-px bg-border" />
-              {/* Center vertical line at 50% */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border" />
-              {/* Right vertical line at 75% */}
-              <div className="absolute left-[75%] top-0 bottom-0 w-px bg-border" />
+              {/* Mobile: Single center line */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border md:hidden" />
+              {/* Desktop: 3 vertical lines */}
+              <div className="hidden md:block absolute left-[25%] top-0 bottom-0 w-px bg-border" />
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border" />
+              <div className="hidden md:block absolute left-[75%] top-0 bottom-0 w-px bg-border" />
             </div>
 
-            {/* Close Button - Exact Center on 50% line */}
+            {/* Close Button - Center on 50% line */}
             <motion.button
               initial={{ opacity: 0, scale: 0, x: "-50%" }}
               animate={{ opacity: 1, scale: 1, x: "-50%" }}
@@ -50,13 +50,190 @@ export const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
 
             {/* Content Container */}
             <div className="h-full relative">
+              {/* Mobile Layout - Center Aligned */}
+              <div className="md:hidden h-full flex flex-col items-center justify-center py-32 px-6">
+                {/* Menu Label */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="text-sm text-creme mb-12"
+                >
+                  Menu
+                </motion.p>
+
+                {/* Menu Items */}
+                <nav className="mb-auto">
+                  <ul className="space-y-6 text-center">
+                    {menuItems.map((item, index) => (
+                      <motion.li
+                        key={item.label}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.3 + index * 0.1,
+                          duration: 0.5,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      >
+                        <motion.a
+                          href={item.href}
+                          onClick={onClose}
+                          initial="initial"
+                          whileHover="hover"
+                          whileTap={{ scale: 0.98 }}
+                          className="relative inline-block overflow-hidden cursor-pointer"
+                          style={{
+                            textTransform: 'uppercase',
+                            fontSize: '3rem',
+                            fontStyle: 'italic',
+                            fontWeight: 900,
+                            lineHeight: '100%',
+                            textDecoration: 'none',
+                            fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif"
+                          }}
+                        >
+                          <motion.span
+                            className="relative z-10 block"
+                            variants={{
+                              initial: { color: "rgb(202, 196, 184)" },
+                              hover: { color: "rgb(0, 0, 0)" }
+                            }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {item.label}
+                          </motion.span>
+                          <motion.div
+                            className="absolute inset-0 bg-[#cac4b8]"
+                            variants={{
+                              initial: { y: "100%" },
+                              hover: { y: "0%" }
+                            }}
+                            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                            style={{ transformStyle: "preserve-3d" }}
+                          />
+                        </motion.a>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </nav>
+
+                {/* Social Icons - Mobile */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                  className="flex gap-0 mb-6"
+                >
+                  <motion.a
+                    href="https://behance.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial="initial"
+                    whileHover="hover"
+                    whileTap={{ scale: 0.95 }}
+                    className="w-16 h-16 border border-creme flex items-center justify-center text-base font-bold relative overflow-hidden cursor-pointer"
+                  >
+                    <motion.span
+                      className="relative z-10"
+                      variants={{
+                        initial: { color: "rgb(234, 229, 219)" },
+                        hover: { color: "rgb(0, 0, 0)" }
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Bē
+                    </motion.span>
+                    <motion.div
+                      className="absolute inset-0 bg-[#cac4b8]"
+                      variants={{
+                        initial: { y: "100%" },
+                        hover: { y: "0%" }
+                      }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </motion.a>
+                  <motion.a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial="initial"
+                    whileHover="hover"
+                    whileTap={{ scale: 0.95 }}
+                    className="w-16 h-16 border-t border-b border-r border-creme flex items-center justify-center relative overflow-hidden cursor-pointer"
+                  >
+                    <motion.svg
+                      className="w-6 h-6 relative z-10"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      variants={{
+                        initial: { color: "rgb(234, 229, 219)" },
+                        hover: { color: "rgb(0, 0, 0)" }
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </motion.svg>
+                    <motion.div
+                      className="absolute inset-0 bg-[#cac4b8]"
+                      variants={{
+                        initial: { y: "100%" },
+                        hover: { y: "0%" }
+                      }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </motion.a>
+                  <motion.a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial="initial"
+                    whileHover="hover"
+                    whileTap={{ scale: 0.95 }}
+                    className="w-16 h-16 border-t border-b border-r border-creme flex items-center justify-center relative overflow-hidden cursor-pointer"
+                  >
+                    <motion.svg
+                      className="w-6 h-6 relative z-10"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      variants={{
+                        initial: { color: "rgb(234, 229, 219)" },
+                        hover: { color: "rgb(0, 0, 0)" }
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </motion.svg>
+                    <motion.div
+                      className="absolute inset-0 bg-[#cac4b8]"
+                      variants={{
+                        initial: { y: "100%" },
+                        hover: { y: "0%" }
+                      }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                  </motion.a>
+                </motion.div>
+
+                {/* Copyright - Mobile */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                  className="text-sm text-creme/50"
+                >
+                  © All Rights Reserved
+                </motion.p>
+              </div>
+
+              {/* Desktop Layout - Two Columns */}
               {/* Left Side - Contact Info (text starts exactly at 25% line) */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="absolute left-[25%] top-0 bottom-0 flex flex-col justify-between py-20"
+                className="hidden md:flex absolute left-[25%] top-0 bottom-0 flex-col justify-between py-20"
               >
                 <div>
                   {/* Contact Section */}
@@ -234,7 +411,7 @@ export const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 50 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="absolute right-[25%] top-0 bottom-0 flex flex-col justify-between py-20 text-right"
+                className="hidden md:flex absolute right-[25%] top-0 bottom-0 flex-col justify-between py-20 text-right"
               >
                 <div>
                   <h3 className="text-sm font-normal mb-16 text-creme">Menu</h3>
