@@ -673,11 +673,12 @@ const Index = () => {
               transition={{ duration: 0.7, delay: 2, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col gap-0 justify-center items-center max-w-sm mx-auto w-full"
             >
-              <motion.button
+              <motion.a
+                href="/cases"
                 initial="initial"
                 whileHover="hover"
                 whileTap={{ scale: 0.98 }}
-                className="w-full h-[50px] rounded-none border-t border-l border-r border-b border-creme relative overflow-hidden bg-transparent text-creme font-medium tracking-wide group cursor-pointer"
+                className="w-full h-[50px] rounded-none border-t border-l border-r border-b border-creme relative overflow-hidden bg-transparent text-creme font-medium tracking-wide group cursor-pointer flex items-center justify-center"
               >
                 <motion.span
                   className="relative z-10"
@@ -698,7 +699,7 @@ const Index = () => {
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   style={{ transformStyle: "preserve-3d" }}
                 />
-              </motion.button>
+              </motion.a>
               <motion.button
                 initial="initial"
                 whileHover="hover"
