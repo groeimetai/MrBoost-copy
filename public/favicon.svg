@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" fill="#000000"/>
+  <text
+    x="32"
+    y="45"
+    font-family="'Gilroy-Bold', 'Gilroy', Arial, sans-serif"
+    font-size="36"
+    font-weight="900"
+    font-style="italic"
+    fill="#EAE5DB"
+    text-anchor="middle">B</text>
+</svg>

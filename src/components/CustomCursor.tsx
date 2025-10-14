@@ -44,7 +44,7 @@ export const CustomCursor = () => {
 
   return (
     <>
-      {/* Inner dot */}
+      {/* Cursor dot */}
       <motion.div
         className="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-[9999]"
         style={{
@@ -54,35 +54,13 @@ export const CustomCursor = () => {
         animate={{
           x: mousePosition.x - 8,
           y: mousePosition.y - 8,
-          scale: isClicking ? 0.5 : isHovering ? 0 : 1,
+          scale: isClicking ? 0.5 : isHovering ? 1.5 : 1,
         }}
         transition={{
           type: "spring",
           stiffness: 1000,
           damping: 40,
           mass: 0.2,
-        }}
-      />
-      {/* Outer ring */}
-      <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998]"
-        style={{
-          border: "2px solid transparent",
-          backgroundImage: "linear-gradient(black, black), linear-gradient(135deg, #10B981, #A855F7, #EC4899)",
-          backgroundOrigin: "border-box",
-          backgroundClip: "padding-box, border-box",
-        }}
-        animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
-          scale: isClicking ? 0.8 : isHovering ? 2 : 1,
-          opacity: isHovering ? 0.5 : 1,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 200,
-          damping: 20,
-          mass: 0.5,
         }}
       />
     </>
