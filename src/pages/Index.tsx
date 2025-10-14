@@ -319,7 +319,7 @@ const Index = () => {
           </div>
 
           {/* Shadow gradient on the left side where text disappears */}
-          <div className="absolute left-[220px] top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-20" />
+          <div className="absolute left-[184px] top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-20" />
 
           {/* Scrolling projects */}
           <div className="absolute left-0 w-full h-full flex items-center">
