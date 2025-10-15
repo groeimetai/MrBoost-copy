@@ -66,6 +66,9 @@ All colors MUST be HSL.
     hyphens: none !important;
     text-transform: uppercase;
     text-shadow: 0 0 15px rgba(234, 229, 219, 0.15);
+    transform: translateY(0px) translateZ(0px);
+    transform-style: preserve-3d;
+    will-change: transform;
   }
 
   * {
