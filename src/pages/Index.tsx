@@ -59,8 +59,8 @@ const AwardsSection = () => {
     <section className="py-32 relative bg-background">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-20"
@@ -178,8 +178,8 @@ const AwardsSection = () => {
 
           {/* Award Logos Grid - Now full width */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="border border-creme relative"
@@ -813,8 +813,8 @@ const Index = () => {
           <div className="container mx-auto px-6">
             <motion.div
               data-parallax-depth="1.5"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-5xl mx-auto"
@@ -855,8 +855,8 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
               {/* Left Column: Title + Paragraph */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="text-left"
@@ -870,9 +870,9 @@ const Index = () => {
                   glitchIntensity={4}
                   triggerMode="onScroll"
                 />
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="text-base md:text-lg text-creme leading-relaxed"
@@ -882,9 +882,9 @@ const Index = () => {
               </motion.div>
               
               {/* Right Column: Skills */}
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                 className="text-right flex flex-col relative"
@@ -912,22 +912,21 @@ const Index = () => {
                   }}
                 >
                   {["Web Design", "Development", "Branding", "Campaigns", "Digital strategy"].map((skill, index) => (
-                    <motion.div 
+                    <motion.div
                       key={index}
                       variants={{
-                        hidden: { opacity: 0, x: 30 },
-                        visible: { 
-                          opacity: 1, 
-                          x: 0,
+                        hidden: { opacity: 0 },
+                        visible: {
+                          opacity: 1,
                           transition: {
                             duration: 0.5,
                             ease: [0.22, 1, 0.36, 1]
                           }
                         }
                       }}
-                      whileHover={{ 
+                      whileHover={{
                         x: -8,
-                        transition: { 
+                        transition: {
                           duration: 0.3,
                           ease: [0.22, 1, 0.36, 1]
                         }
@@ -948,8 +947,8 @@ const Index = () => {
       <section className="py-20 relative overflow-hidden bg-background">
         <div className="container mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
@@ -1089,8 +1088,8 @@ const Index = () => {
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-20"
@@ -1107,8 +1106,8 @@ const Index = () => {
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{
                   duration: 0.6,
