@@ -9,7 +9,6 @@ import { Spotlight } from "@/components/Spotlight";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { MenuOverlay } from "@/components/MenuOverlay";
 import { Anime3DCards } from "@/components/Anime3DCards";
-import { AnimeLetterReveal } from "@/components/AnimeLetterReveal";
 import { Anime3DTiltCard } from "@/components/Anime3DTiltCard";
 import { AnimeParallaxSection } from "@/components/AnimeParallaxSection";
 import { Anime3DGeometry } from "@/components/Anime3DGeometry";
@@ -29,7 +28,47 @@ const AwardsSection = () => {
   const [isAnyButtonHovered, setIsAnyButtonHovered] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<'left' | 'right' | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentAwardIndex, setCurrentAwardIndex] = useState(0);
   const certificateRef = useRef<HTMLDivElement>(null);
+
+  // Define 3 different awards
+  const awards = [
+    {
+      title: "UX DESIGN AWARD",
+      organization: "'t Harnas",
+      date: "2020 DEC 09",
+      awardedBy: "KIK FOR ZIJZELF DAARMEE COMMUNITY",
+      gradient: "from-orange-300 via-orange-300 to-orange-400",
+      shadowColor: "rgba(251, 146, 60, 0.6)",
+      textColor: "black"
+    },
+    {
+      title: "BEST WEB DESIGN",
+      organization: "Awwwards",
+      date: "2021 MAR 15",
+      awardedBy: "INTERNATIONAL DESIGN COMMUNITY",
+      gradient: "from-blue-400 via-blue-300 to-blue-500",
+      shadowColor: "rgba(59, 130, 246, 0.6)",
+      textColor: "white"
+    },
+    {
+      title: "CREATIVE EXCELLENCE",
+      organization: "CSSDA",
+      date: "2022 SEP 22",
+      awardedBy: "CSS DESIGN AWARDS GLOBAL",
+      gradient: "from-pink-400 via-pink-300 to-pink-500",
+      shadowColor: "rgba(236, 72, 153, 0.6)",
+      textColor: "white"
+    }
+  ];
+
+  // Auto-rotate awards every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAwardIndex((prev) => (prev + 1) % awards.length);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleButtonMouseEnter = (button: 'left' | 'right') => {
     console.log('Button hovered:', button); // Debug log
@@ -115,8 +154,8 @@ const AwardsSection = () => {
             <motion.div
               className="h-full w-full shadow-2xl"
               animate={{
-                rotateX: isAnyButtonHovered ? -mousePosition.y * 3 : 0,
-                rotateY: isAnyButtonHovered ? mousePosition.x * 3 : 0,
+                rotateX: isAnyButtonHovered ? -mousePosition.y * 8 : 0,
+                rotateY: isAnyButtonHovered ? mousePosition.x * 8 : 0,
               }}
               transition={{
                 duration: 0.3,
@@ -126,26 +165,26 @@ const AwardsSection = () => {
                 transformStyle: "preserve-3d",
               }}
             >
-              <div className="h-full bg-gradient-to-br from-orange-300 via-orange-300 to-orange-400 p-10 flex flex-col justify-between">
+              <div className={`h-full bg-gradient-to-br ${awards[currentAwardIndex].gradient} p-10 flex flex-col justify-between`}>
                 <div>
-                  <p className="text-black/70 text-[10px] mb-2 uppercase tracking-wider font-medium">Awarded to</p>
-                  <h3 className="text-black text-lg font-bold mb-6" style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', sans-serif" }}>MRBOOST & RICK BOSSENBROEK</h3>
+                  <p className={`${awards[currentAwardIndex].textColor === 'white' ? 'text-white/70' : 'text-black/70'} text-[10px] mb-2 uppercase tracking-wider font-medium`}>Awarded to</p>
+                  <h3 className={`${awards[currentAwardIndex].textColor === 'white' ? 'text-white' : 'text-black'} text-lg font-bold mb-6`} style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', sans-serif" }}>MRBOOST</h3>
                 </div>
 
                 <div className="flex-1 flex items-center justify-center">
-                  <div className="text-black space-y-2">
+                  <div className={`${awards[currentAwardIndex].textColor === 'white' ? 'text-white' : 'text-black'} space-y-2`}>
                     <div className="transform rotate-6">
                       <svg viewBox="0 0 300 200" className="w-full h-auto">
                         <text x="10" y="100" style={{
                           fontFamily: "'Gilroy-Bold', 'Gilroy', sans-serif",
-                          fontSize: '100px',
+                          fontSize: '60px',
                           fontWeight: 900,
                           fill: 'none',
-                          stroke: 'black',
+                          stroke: awards[currentAwardIndex].textColor === 'white' ? 'white' : 'black',
                           strokeWidth: '3px',
                           letterSpacing: '-0.05em'
                         }}>
-                          UX
+                          {awards[currentAwardIndex].title.split(' ')[0]}
                         </text>
                       </svg>
                     </div>
@@ -153,9 +192,9 @@ const AwardsSection = () => {
                 </div>
 
                 <div>
-                  <p className="text-black/70 text-[11px] mb-1 font-medium">2020 DEC 09</p>
-                  <p className="text-black text-base font-bold mb-2" style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', sans-serif" }}>'t Harnas</p>
-                  <p className="text-black/60 text-[9px] uppercase tracking-wide font-medium">Proudly awarded by KIK FOR ZIJZELF DAARMEE COMMUNITY</p>
+                  <p className={`${awards[currentAwardIndex].textColor === 'white' ? 'text-white/70' : 'text-black/70'} text-[11px] mb-1 font-medium`}>{awards[currentAwardIndex].date}</p>
+                  <p className={`${awards[currentAwardIndex].textColor === 'white' ? 'text-white' : 'text-black'} text-base font-bold mb-2`} style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', sans-serif" }}>{awards[currentAwardIndex].organization}</p>
+                  <p className={`${awards[currentAwardIndex].textColor === 'white' ? 'text-white/60' : 'text-black/60'} text-[9px] uppercase tracking-wide font-medium`}>Proudly awarded by {awards[currentAwardIndex].awardedBy}</p>
                 </div>
               </div>
             </motion.div>
@@ -164,7 +203,7 @@ const AwardsSection = () => {
             <motion.div
               className="absolute inset-0 pointer-events-none -z-10"
               style={{
-                boxShadow: "0 50px 100px rgba(251, 146, 60, 0.6)",
+                boxShadow: `0 50px 100px ${awards[currentAwardIndex].shadowColor}`,
                 filter: "blur(40px)",
               }}
               animate={{
@@ -480,7 +519,7 @@ const Index = () => {
           {/* Logo */}
           <motion.div
             animate={{
-              x: isMenuOpen ? "calc(50vw - 50% - 24px)" : 0,
+              x: isMenuOpen ? 24 : 0,
               opacity: isMenuOpen ? 0 : 1
             }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -491,35 +530,61 @@ const Index = () => {
           </motion.div>
 
           {/* Menu Button / Close Button */}
-          <motion.button
-            animate={{
-              x: isMenuOpen ? "calc(50vw - 100% - 24px)" : 0,
-            }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ scale: 1.05, backgroundColor: "rgb(168, 85, 247)" }}
-            whileTap={{ scale: 0.95 }}
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="border-t border-r border-b border-creme w-12 h-12 flex items-center justify-center bg-black transition-colors duration-300 group cursor-pointer"
+            className="border-t border-r border-b border-creme bg-black transition-all duration-300 group cursor-pointer hover:bg-purple-600 active:scale-95"
+            style={{
+              width: '48px',
+              height: '48px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transform: isMenuOpen ? 'translateX(-24px)' : 'translateX(0px)',
+              transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s',
+            }}
           >
-            <div className="flex flex-col gap-2 items-center justify-center">
-              <motion.div
-                className="w-5 h-px bg-current origin-center"
-                animate={{
-                  rotate: isMenuOpen ? 45 : 0,
-                  y: isMenuOpen ? 0 : -1,
+            <div style={{
+              width: '20px',
+              height: '20px',
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transform: isMenuOpen ? 'translateX(24px)' : 'translateX(0px)',
+              transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+            }}>
+              <span
+                style={{
+                  width: '20px',
+                  height: '2px',
+                  backgroundColor: 'rgb(234, 229, 219)',
+                  position: 'absolute',
+                  display: 'block',
+                  top: '50%',
+                  left: '0',
+                  marginTop: '-1px',
+                  transform: isMenuOpen ? 'translateY(0px) rotate(45deg)' : 'translateY(-4px) rotate(0deg)',
+                  transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+                  transformOrigin: 'center center',
                 }}
-                transition={{ duration: 0.3 }}
               />
-              <motion.div
-                className="w-5 h-px bg-current origin-center"
-                animate={{
-                  rotate: isMenuOpen ? -45 : 0,
-                  y: isMenuOpen ? -4 : 1,
+              <span
+                style={{
+                  width: '20px',
+                  height: '2px',
+                  backgroundColor: 'rgb(234, 229, 219)',
+                  position: 'absolute',
+                  display: 'block',
+                  top: '50%',
+                  left: '0',
+                  marginTop: '-1px',
+                  transform: isMenuOpen ? 'translateY(0px) rotate(-45deg)' : 'translateY(4px) rotate(0deg)',
+                  transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+                  transformOrigin: 'center center',
                 }}
-                transition={{ duration: 0.3 }}
               />
             </div>
-          </motion.button>
+          </button>
         </div>
       </div>
 
@@ -643,29 +708,16 @@ const Index = () => {
                 Creative agency
               </span>
             </motion.div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-16 leading-[1.1] italic text-creme" style={{ wordBreak: 'keep-all', hyphens: 'none' }}>
-              <AnimeLetterReveal
-                text="WE DESIGN UNIQUE"
-                className="block"
-                delay={400}
-                staggerDelay={35}
-                triggerOnScroll={false}
-              />
-              <AnimeLetterReveal
-                text="GRAPHIC AND WEB"
-                className="block"
-                delay={900}
-                staggerDelay={35}
-                triggerOnScroll={false}
-              />
-              <AnimeLetterReveal
-                text="EXPERIENCES"
-                className="block"
-                delay={1400}
-                staggerDelay={35}
-                triggerOnScroll={false}
-              />
-            </h1>
+            <motion.h1
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-16 leading-[1.1] italic text-creme"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              WE DESIGN UNIQUE<br />
+              GRAPHIC AND WEB<br />
+              EXPERIENCES
+            </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -837,8 +889,7 @@ const Index = () => {
 
                 <iframe
                   src="https://player.vimeo.com/video/1101440320?title=0&byline=0&portrait=0"
-                  className="absolute inset-0 w-full h-full"
-                  frameBorder="0"
+                  className="absolute inset-0 w-full h-full border-0"
                   allow="autoplay; fullscreen; picture-in-picture"
                 ></iframe>
               </div>
@@ -1129,11 +1180,9 @@ const Index = () => {
       <section className="py-32 relative border-t border-border">
         <div className="container mx-auto px-6">
           <AnimatedSection className="text-center mb-20">
-            <AnimeLetterReveal
-              text="Featured Work"
-              className="text-5xl md:text-6xl font-bold mb-6 italic text-creme"
-              style={{ wordBreak: 'keep-all', hyphens: 'none' }}
-            />
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 italic text-creme">
+              Featured Work
+            </h2>
             <p className="text-xl text-creme max-w-2xl mx-auto">
               A selection of our most impactful projects
             </p>
@@ -1216,12 +1265,9 @@ const Index = () => {
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <AnimatedSection>
-                <AnimeLetterReveal
-                  text="READY FOR A BOOST?"
-                  className="text-5xl md:text-6xl font-bold mb-8 italic leading-tight text-creme"
-                  style={{ wordBreak: 'keep-all', hyphens: 'none' }}
-                  staggerDelay={30}
-                />
+                <h2 className="text-5xl md:text-6xl font-bold mb-8 italic leading-tight text-creme">
+                  READY FOR A BOOST?
+                </h2>
                 <motion.button
                   initial="initial"
                   whileHover="hover"
@@ -1321,56 +1367,200 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="">
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-x divide-border">
-          {/* Left: Copyright */}
-          <div className="flex items-center justify-center md:justify-start px-6 py-8 md:py-12">
-            <p className="text-sm text-creme">
-              © All Rights Reserved
-            </p>
-          </div>
+      {/* Footer - MrBoost Style */}
+      <footer className="relative">
+        <div className="w-[72vw] max-w-[1600px] mx-auto">
+          {/* Footer Content */}
+          <div className="py-32 flex flex-col items-center justify-center relative">
+            {/* Heading */}
+            <h2
+              className="text-5xl md:text-6xl lg:text-7xl font-bold italic text-creme text-center mb-16"
+              style={{
+                fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif",
+                lineHeight: '1.2'
+              }}
+            >
+              READY FOR<br />A BOOST?
+            </h2>
 
-          {/* Center: Available for projects */}
-          <div className="flex items-center justify-center px-6 py-8 md:py-12 border-t md:border-t-0 border-border">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span className="text-sm text-creme underline">Beschikbaar voor nieuwe projecten</span>
+            {/* Circular CTA with Arrow */}
+            <motion.a
+              href="/contact"
+              className="relative group mb-12"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <motion.div
+                className="w-64 h-64 rounded-full border-2 border-purple-600 flex items-center justify-center cursor-pointer relative overflow-hidden"
+                whileHover={{ borderWidth: "3px" }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Background fill on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-purple-600 rounded-full"
+                  initial={{ scale: 0 }}
+                  whileHover={{ scale: 1 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                />
+
+                {/* Arrow Icon */}
+                <motion.svg
+                  className="w-20 h-20 text-purple-600 relative z-10 group-hover:text-white transition-colors duration-300"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  animate={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </motion.svg>
+              </motion.div>
+            </motion.a>
+
+            {/* Stacked Buttons */}
+            <div className="flex gap-0 flex-col w-full max-w-md">
+              {/* E-mail Button */}
+              <motion.a
+                href="mailto:dennis@mrboost.nl"
+                className="border border-creme h-14 flex items-center justify-center relative overflow-hidden group cursor-pointer"
+                whileHover="hover"
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="relative z-10 overflow-hidden h-full flex items-center justify-center w-full">
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    variants={{
+                      hover: { y: "-100%" }
+                    }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <span className="text-creme font-medium" style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif" }}>
+                      E-mail
+                    </span>
+                  </motion.div>
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    initial={{ y: "100%" }}
+                    variants={{
+                      hover: { y: "0%" }
+                    }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <span className="text-creme font-medium" style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif" }}>
+                      E-mail
+                    </span>
+                  </motion.div>
+                </div>
+              </motion.a>
+
+              {/* WhatsApp Button */}
+              <motion.a
+                href="https://wa.me/31637344570"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-l border-r border-b border-creme h-14 flex items-center justify-center relative overflow-hidden group cursor-pointer"
+                whileHover="hover"
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="relative z-10 overflow-hidden h-full flex items-center justify-center w-full">
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    variants={{
+                      hover: { y: "-100%" }
+                    }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <span className="text-[#cac4b8] font-medium" style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif" }}>
+                      Whatsapp
+                    </span>
+                  </motion.div>
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    initial={{ y: "100%" }}
+                    variants={{
+                      hover: { y: "0%" }
+                    }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <span className="text-[#cac4b8] font-medium" style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif" }}>
+                      Whatsapp
+                    </span>
+                  </motion.div>
+                </div>
+              </motion.a>
             </div>
           </div>
 
-          {/* Right: Social Media */}
-          <div className="flex items-center justify-center md:justify-end gap-6 px-6 py-8 md:py-12 border-t md:border-t-0 border-border">
-            <motion.a
-              href="#"
-              className="text-creme hover:text-accent transition-colors"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22 7.5c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-9zm-4-2c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v11c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-11zm-8-3c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v16c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-16z"/>
-              </svg>
-            </motion.a>
-            <motion.a
-              href="#"
-              className="text-creme hover:text-accent transition-colors"
-              whileHover={{ scale: 1.2, rotate: -5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </motion.a>
-            <motion.a
-              href="#"
-              className="text-creme hover:text-accent transition-colors"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </motion.a>
+          {/* Footer Credentials */}
+          <div className="grid grid-cols-1 md:grid-cols-3 border-t border-border">
+            {/* Copyright */}
+            <div className="flex items-center justify-center md:justify-start px-6 py-8 md:py-12">
+              <p className="text-sm text-creme/60" style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif" }}>
+                © All Rights Reserved
+              </p>
+            </div>
+
+            {/* Available for projects */}
+            <div className="flex items-center justify-center px-6 py-8 md:py-12 border-t md:border-t-0 border-border">
+              <div className="flex items-center gap-2">
+                <motion.div
+                  className="w-2 h-2 rounded-full bg-green-500"
+                  animate={{ scale: [1, 1.2, 1], opacity: [1, 0.8, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <a
+                  href="/contact"
+                  className="text-sm text-creme underline hover:no-underline transition-all"
+                  style={{ fontFamily: "'Gilroy-Bold', 'Gilroy', Arial, sans-serif" }}
+                >
+                  Beschikbaar voor nieuwe projecten
+                </a>
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="flex items-center justify-center md:justify-end gap-6 px-6 py-8 md:py-12 border-t md:border-t-0 border-border">
+              <motion.a
+                href="https://www.behance.net/mrboost"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-creme hover:text-purple-600 transition-colors"
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M22 7.5c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v9c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-9zm-4-2c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v11c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-11zm-8-3c0-.3-.2-.5-.5-.5h-3c-.3 0-.5.2-.5.5v16c0 .3.2.5.5.5h3c.3 0 .5-.2.5-.5v-16z"/>
+                </svg>
+              </motion.a>
+              <motion.a
+                href="https://www.facebook.com/mrboost.nl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-creme hover:text-purple-600 transition-colors"
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </motion.a>
+              <motion.a
+                href="https://www.instagram.com/mrboost/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-creme hover:text-purple-600 transition-colors"
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </motion.a>
+            </div>
           </div>
         </div>
       </footer>

@@ -23,18 +23,18 @@ export const AnimeSnakeText = ({ text, className = "" }: AnimeSnakeTextProps) =>
   );
 
   return (
-    <section ref={containerRef} className="relative h-[60vh] overflow-hidden border-t border-border">
+    <section ref={containerRef} className="relative h-[100vh] overflow-hidden border-t border-border">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <svg
-          viewBox="0 0 2000 400"
+          viewBox="0 0 2000 800"
           className="w-full h-full"
-          style={{ overflow: 'visible' }}
+          preserveAspectRatio="xMidYMid meet"
         >
           <defs>
             {/* Define a wavy path for text to follow */}
             <path
               id="wavePath"
-              d="M -500,200 Q -250,100 0,200 T 500,200 T 1000,200 T 1500,200 T 2000,200 T 2500,200 T 3000,200"
+              d="M -500,400 Q -250,840 0,400 T 500,400 T 1000,400 T 1500,400 T 2000,400 T 2500,400 T 3000,400"
               fill="none"
               stroke="none"
             />
