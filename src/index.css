@@ -64,11 +64,22 @@ All colors MUST be HSL.
     word-break: keep-all !important;
     overflow-wrap: break-word !important;
     hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
+    white-space: normal !important;
     text-transform: uppercase;
     text-shadow: 0 0 15px rgba(234, 229, 219, 0.15);
     transform: translateY(0px) translateZ(0px);
     transform-style: preserve-3d;
     will-change: transform;
+  }
+
+  /* Extra strong rule for all text elements */
+  h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+    word-break: keep-all !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
   }
 
   * {

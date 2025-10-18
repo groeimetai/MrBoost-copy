@@ -18,7 +18,6 @@ import { AnimeMagneticElements } from "@/components/AnimeMagneticElements";
 import { AnimeParticleBurst } from "@/components/AnimeParticleBurst";
 import { AnimeMorphingBlob } from "@/components/AnimeMorphingBlob";
 import { Anime3DFlipCardGrid } from "@/components/Anime3DFlipCardGrid";
-import { AnimeTextScramble } from "@/components/AnimeTextScramble";
 import { AnimeSnakeText } from "@/components/AnimeSnakeText";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
@@ -861,15 +860,9 @@ const Index = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="text-left"
               >
-                <AnimeTextScramble
-                  text="YOU'VE GOT GREAT TASTE"
-                  as="h2"
-                  className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 italic leading-[1.05] tracking-tight text-creme"
-                  style={{ wordBreak: 'keep-all', hyphens: 'none' }}
-                  speed={40}
-                  glitchIntensity={4}
-                  triggerMode="onScroll"
-                />
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 italic leading-[1.05] tracking-tight text-creme">
+                  YOU'VE GOT GREAT TASTE
+                </h2>
                 <motion.p
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
